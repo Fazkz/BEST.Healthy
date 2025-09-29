@@ -1,0 +1,536 @@
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>BEST.Healthy</title>
+<!-- لصيغة PNG -->
+<link rel="icon" type="image/png" href="https://up6.cc/2025/08/175908486396261.png">
+<!--للأيفون صوره تطبيق -->
+<link rel="apple-touch-icon"
+sizes="180x180" href="https://up6.cc/2025/08/175908486396261.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet" />
+ <link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="bg-white text-gray-900 relative" id="body">
+  <!-- Navbar -->
+  <nav class="bg-[#2c3e50] flex items-center justify-between px-4 py-3 sticky top-0 z-50">
+    <div class="flex items-center space-x-4 space-x-reverse">
+      <button
+        aria-label="menu"
+        id="menuBtn"
+        class="text-white text-2xl focus:outline-none"
+        title="القائمة"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+<span class="text-white text-lg font-normal select-none">BEST.Healthy</span>
+    </div>
+    <div class="flex items-center space-x-4 space-x-reverse">
+      <button
+        aria-label="favorites"
+        id="favoritesBtn"
+        class="text-white text-xl focus:outline-none"
+        title="المفضلة"
+      >
+        <i class="far fa-heart"></i>
+      </button>
+      <button
+        aria-label="toggle dark mode"
+        id="darkModeBtn"
+        class="text-white text-xl focus:outline-none"
+        title="تبديل الوضع الليلي"
+      >
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Side Menu -->
+  <aside
+    id="sideMenu"
+    class="fixed top-0 right-0 h-full w-64 bg-white dark:bg-[#1a202c] shadow-lg transform translate-x-full transition-transform z-50"
+    style="direction: rtl"
+  >
+    <div class="flex justify-between items-center p-4 border-b border-gray-300 dark:border-gray-700">
+      <h2 class="font-bold text-lg dark:text-white">القائمة</h2>
+      <button id="closeMenuBtn" aria-label="close menu" class="text-2xl focus:outline-none dark:text-white">
+        &times;
+      </button>
+    </div>
+<nav class="flex flex-col p-4 space-y-3 text-gray-700 dark:text-gray-300">
+<a href="index.html"  class="text-right hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none" data-file="home">الرئيسية</a>
+<a href="#"  class="text-right hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none" data-file="diet">النظام الغذائي</a>
+<a href="SPORTS/SA.html"  class="text-right hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none" data-file="exercises">التمارين</a>
+<a href="#"  class="text-right hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none" data-file="info">المعلومات</a>
+<a href="#" class="text-right hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none" data-file="stats">الإحصائيات</a>
+    </nav>
+  </aside>
+  <!-- Favorites Window -->
+  <div
+    id="favoritesWindow"
+    class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto"
+    style="direction: rtl"
+  >
+    <div class="bg-white dark:bg-[#ffffff] max-w-3xl mx-auto mt-16 rounded-lg p-4 relative">
+      <button
+        id="closeFavoritesBtn"
+        aria-label="close favorites"
+        class="absolute top-3 left-3 text-3xl font-bold text-gray-700 dark:text-gray-300 focus:outline-none"
+      >
+        &times;
+      </button>
+      <h2 class="text-xl font-bold mb-3 dark:text-white">المفضلة</h2>
+      <button
+        id="editFavoritesBtn"
+        class="mb-3 px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none"
+      >
+        تعديل
+      </button>
+      <div id="favoritesList" class="grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-[60vh] overflow-y-auto">
+        <!-- Favorite recipes will be appended here -->
+      </div>
+      <p id="favoritesEmpty" class="text-center text-gray-500 dark:text-gray-400 mt-4">لا توجد وصفات مفضلة</p>
+    </div>
+  </div>
+
+  <!-- Recipe Detail Window -->
+  <div
+    id="recipeDetailWindow"
+    class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto"
+    style="direction: rtl"
+  >
+    <div class="bg-white dark:bg-[#124559] max-w-3xl mx-auto mt-16 rounded-lg p-4 relative">
+      <button
+        id="closeRecipeDetailBtn"
+        aria-label="close recipe detail"
+        class="absolute top-3 left-3 text-3xl font-bold text-gray-700 dark:text-gray-300 focus:outline-none"
+      >
+        &times;
+      </button>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <img
+          id="recipeDetailImage"
+          alt="صورة الوصفة"
+          class="rounded-xl w-full sm:w-49 h-49 object-cover flex-shrink-0"
+          src=""
+          width="192"
+          height="192"
+        />
+        <div class="flex flex-col justify-between flex-grow">
+          <div>
+            <h3 id="recipeDetailName" class="text-2xl font-bold mb-1 dark:text-white"></h3>
+            <p class="text-gray-600 dark:text-green-300 mb-1">
+              السعرات الحرارية: <span id="recipeDetailCalories"></span> كالوري
+            </p>
+<p class="text-gray-600 dark:text-green-300 mb-3" id="recipeDetailMacros"></p>
+          </div>
+          <button
+            id="toggleFavoriteRecipeBtn"
+            class="text-2xl text-red-600 dark:text-red-400 focus:outline-none"
+            title="إضافة/إزالة من المفضلة"
+          >
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+      <hr class="my-4 border-gray-300 dark:border-gray-700" />
+      <div>
+        <h4 class="font-semibold text-lg mb-2 dark:text-white">المكونات</h4>
+        <ul id="recipeIngredients" class="list-disc list-inside text-gray-700 dark:text-gray-300"></ul>
+      </div>
+      <div class="mt-4">
+        <h4 class="font-semibold text-lg mb-2 dark:text-white">طريقة التحضير</h4>
+        <ol id="recipePreparation" class="list-decimal list-inside text-gray-700 dark:text-gray-300"></ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- More Recipes Window -->
+  <div
+    id="moreRecipesWindow"
+    class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto"
+    style="direction: rtl"
+  >
+    <div class="bg-white dark:bg-[#1a202c] max-w-5xl mx-auto mt-8 rounded-lg p-4 relative min-h-[80vh] flex flex-col">
+      <button
+        id="closeMoreRecipesBtn"
+        aria-label="close more recipes"
+        class="absolute top-3 left-3 text-3xl font-bold text-gray-700 dark:text-gray-300 focus:outline-none"
+      >
+        &times;
+      </button>
+      <h2 
+
+      class="text-xl font-bold mb-3 dark:text-white">المزيد من الوصفات</h2>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 sm:space-x-reverse mb-4">
+        <input
+          id="recipeSearchInput"
+          type="text"
+          placeholder="ابحث عن وصفة..."
+          class="flex-grow rounded border border-gray-400 px-3 py-2 mb-3 sm:mb-0 dark:bg-[#2d3748] dark:text-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <select
+          id="calorieFilter"
+          class="rounded border border-gray-400 px-3 py-2 dark:bg-[#2d3748] dark:text-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          title="تصفية حسب السعرات"
+        >
+          <option value="all">كل الوصفات</option>
+          <option value="low">أقل من 200 كالوري</option>
+          <option value="medium">200 - 400 كالوري</option>
+          <option value="high">أكثر من 400 كالوري</option>
+        </select>
+      </div>
+      <div
+        id="moreRecipesList"
+        class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-4 overflow-y-auto flex-grow"
+      >
+        <!-- 30 recipes will be rendered here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="px-4 mt-3 max-w-7xl mx-auto">
+    <!-- Top Scrollable Images -->
+    <section class="flex space-x-4 space-x-reverse overflow-x-auto pb-2">
+ <img
+src="https://up6.cc/2025/08/175901471689071.jpeg"
+alt="صورة"
+class="w-64 h-32 rounded-xl object-cover flex-shrink-0 cursor-pointer"
+data-file="file1"
+      />
+<img
+src="https://up6.cc/2025/08/175917510072251.png"
+alt="صورة"
+        class="w-64 h-32 rounded-xl object-cover flex-shrink-0 cursor-pointer"
+        data-file="SPORTS/SA.html"
+      />
+<img
+src="https://up6.cc/2025/08/175917474545771.jpeg"
+        alt="صورة"
+        class="w-64 h-32 rounded-xl object-cover flex-shrink-0"
+      />
+<img
+src="https://up6.cc/2025/08/175917510072251.png"
+        alt="صورة"
+        class="w-64 h-32 rounded-xl object-cover flex-shrink-0"
+      />
+<img
+src="https://up6.cc/2025/08/175901471689071.jpeg"
+        alt="صورة"
+        class="w-64 h-32 rounded-xl object-cover flex-shrink-0"
+      />
+<img
+src="https://up6.cc/2025/08/175901471689071.jpeg"
+        alt="صورة"
+        class="w-64 h-32 rounded-xl object-cover flex-shrink-0"
+      />
+<img
+src="https://up6.cc/2025/08/175901471689071.jpeg"
+        alt="صورة"
+        class="w-64 h-32 rounded-xl object-cover flex-shrink-0"
+      />
+    </section>
+
+    <!-- Title and More -->
+    <section
+      class="flex justify-between items-center mt-3 border-b border-gray-300 dark:border-gray-700 pb-1">
+<h2 
+      class="font-bold text-base dark:text-black">اكثر من 30 + وصفات صحيه</h2>
+      <button
+        id="moreBtn"
+        class="flex items-center text-green-600 font-semibold text-sm focus:outline-none"
+        title="المزيد"
+      >
+        <span class="text-2xl leading-none">+</span>
+        <span>المزيد</span>
+      </button>
+    </section>
+
+    <!-- Recipes Scroll -->
+    <section class="mt-3 overflow-x-auto">
+      <div
+        id="homeRecipesList"
+        class="flex space-x-4 space-x-reverse w-max"
+        style="direction: rtl"
+      >
+        <!-- 10 recipes will be rendered here -->
+      </div>
+    </section>
+
+    <!-- Water Tracking -->
+    <section class="mt-6">
+      <div class="bg-[#e6e6e6] dark:bg-[#2d3748] rounded-xl p-4">
+        
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="font-bold text-lg dark:text-white">تتبع شرب الماء</h3>
+          <button
+            id="resetWaterBtn"
+class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 focus:outline-none"
+            type="button"
+            title="إعادة تعيين"
+          >
+            اعادة تعيين
+          </button>
+        </div>
+        <div
+          class="flex items-center justify-center space-x-3 space-x-reverse bg-white dark:bg-[#2c3e50] rounded-full max-w-[180px] mx-auto py-1"
+        >
+          <button
+            aria-label="decrease"
+            id="waterDecreaseBtn"
+            class="text-[#2c3e50] dark:text-gray-300 text-2xl font-bold px-3 focus:outline-none"
+            type="button"
+          >
+            -
+          </button>
+          <div
+            id="waterAmountDisplay"
+            class="bg-[#7fb6d9] dark:bg-[#4a90e2] text-[#2c3e50] dark:text-gray-900 font-bold rounded-full text-center text-base w-16 py-1 select-none"
+          >
+            50
+          </div>
+          <button
+            aria-label="increase"
+            id="waterIncreaseBtn"
+            class="text-[#2c3e50] dark:text-gray-300 text-2xl font-bold px-3 focus:outline-none"
+            type="button"
+          >
+            +
+          </button>
+        </div>
+        <div
+          class="flex justify-center items-center space-x-2 space-x-reverse mt-2 max-w-[180px] mx-auto"
+        >
+          <input
+            id="waterQuickInput"
+            aria-label="كمية"
+            class="w-16 rounded-full border border-[#2c3e50] dark:border-gray-600 text-center text-sm py-1 dark:bg-[#2d3748] dark:text-gray-300 focus:outline-none"
+            type="number"
+            min="0"
+            step="50"
+            value="50"
+          />
+          <span class="text-sm dark:text-gray-300">ml</span>
+          <button
+            id="waterQuickDoneBtn"
+            class="bg-[#2c3e50] dark:bg-[#1a202c] text-white rounded-full text-xs px-3 py-1 focus:outline-none"
+            type="button"
+          >
+            تم
+          </button>
+        </div>
+        <div
+          class="flex justify-center items-center space-x-2 space-x-reverse mt-3 max-w-[280px] mx-auto"
+        >
+          <input
+            id="waterGoalInput"
+            aria-label="هدف الكمية"
+            class="w-20 rounded border border-gray-400 dark:border-gray-600 text-center text-sm py-1 dark:bg-[#2d3748] dark:text-gray-300 focus:outline-none"
+            type="number"
+            min="0"
+            value="3000"
+          />
+          <span class="text-sm dark:text-gray-300">ml هدف الكمية</span>
+        </div>
+        <div class="mt-4 max-w-[280px] mx-auto">
+          <div
+            id="waterProgressBar"
+            class="w-full h-4 rounded-full bg-[#a7d1e8] dark:bg-[#4a90e2] relative overflow-hidden"
+            style="background: linear-gradient(to right, #7fb6d9 0%, #7fb6d9 5%, #a7d1e8 5%, #a7d1e8 100%)"
+          ></div>
+          <p id="waterProgressPercent" class="text-right mt-1 font-semibold text-base dark:text-white">
+            5%
+          </p>
+        </div>
+        <div
+          id="waterDetailsBtn"
+          class="flex items-center space-x-2 space-x-reverse mt-3 max-w-[280px] mx-auto cursor-pointer select-none"
+          title="تفاصيل اكثر"
+        >
+          <div
+            class="bg-[#7fb6d9] dark:bg-[#4a90e2] rounded-full p-2 flex justify-center items-center"
+            style="width: 30px; height: 30px"
+          >
+            <i class="fas fa-chart-bar text-white text-sm"></i>
+          </div>
+          <p class="text-sm dark:text-gray-300">تفاصيل اكثر</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Water Details Window -->
+    <div
+      id="waterDetailsWindow"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto"
+      style="direction: rtl"
+    >
+      <div
+        class="bg-white dark:bg-[#1a202c] max-w-3xl mx-auto mt-16 rounded-lg p-4 relative"
+      >
+        <button
+          id="closeWaterDetailsBtn"
+          aria-label="close water details"
+          class="absolute top-3 left-3 text-3xl font-bold text-gray-700 dark:text-gray-300 focus:outline-none"
+        >
+          &times;
+        </button>
+        <h3 class="text-xl font-bold mb-3 dark:text-white">تفاصيل شرب الماء</h3>
+        <div class="mb-4 dark:text-gray-300">
+          <p>كمية الماء التي شربتها يوميًا (لتر): <span id="waterLiters">0</span></p>
+          <p>أفضل يوم لشرب الماء: <span id="bestWaterDay">لا يوجد بيانات</span></p>
+        </div>
+        <div class="mb-4">
+          <canvas id="waterChart" class="w-full h-48 bg-gray-100 dark:bg-gray-700 rounded"></canvas>
+        </div>
+        <button
+          id="clearWaterDataBtn"
+          class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded focus:outline-none"
+        >
+          مسح جميع البيانات
+        </button>
+        <p class="mt-4 italic dark:text-gray-400" id="waterMotivation">
+          اشرب الماء بانتظام لتحافظ على صحتك ونشاطك!
+        </p>
+      </div>
+    </div>
+
+    <!-- Tips Section -->
+    <section class="mt-6">
+      <h3 class="text-center font-semibold text-lg mb-4 dark:text-white">نصائح تهمك</h3>
+      <div class="flex justify-center space-x-4 space-x-reverse">
+        <a
+href="https://www.sfda.gov.sa/sites/default/files/2023-03/P-02.pdf"
+target="_blank"
+rel="noopener noreferrer"
+class="w-24 rounded-xl overflow-hidden cursor-pointer"
+title="دليل الفيتامينات">
+<img
+alt="دليل الفيتامينات"
+class="w-24 h-24 object-cover"
+src="https://up6.cc/2025/08/175878737716021.jpeg"
+width="96"
+height="96"
+          />
+<p class="text-[10px] text-center mt-1 dark:text-black-400">دليل الفيتامينات</p>
+        </a>
+        <a
+href="https://www.moh.gov.sa/Ministry/About/Health%20Policies/Healthy-Food-Guidelines-for-Health-Practitioners.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-24 rounded-xl overflow-hidden cursor-pointer"
+          title="دليل الغذاء الصحي"
+        >
+          <img
+            alt="فواكه وخضروات ملونة على خلفية رمادية فاتحة"
+            class="w-24 h-24 object-cover"
+            src="https://storage.googleapis.com/a1aa/image/37628d50-4172-4909-8993-f596e32075b0.jpg"
+            width="96"
+            height="96"
+          />
+          <p class="text-[10px] text-center mt-1 dark:text-gray-300">دليل الغذاء الصحي</p>
+        </a>
+        <a
+          href="https://www.moh.gov.sa/Ministry/About/Health%20Policies/Healthy-Food-Guidelines-for-Health-Practitioners.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-24 rounded-xl overflow-hidden cursor-pointer"
+          title="دليل السعرات الحرارية"
+        >
+          <img
+            alt="زهور ملونة مع أشرطة قياس الوزن على خلفية زرقاء فاتحة"
+            class="w-24 h-24 object-cover"
+            src="https://storage.googleapis.com/a1aa/image/4c72ef0a-d0b8-4f05-5034-76153b89a840.jpg"
+            width="96"
+            height="96"
+          />
+          <p class="text-[10px] text-center mt-1 dark:text-gray-300">دليل السعرات الحرارية</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Privacy Policy Window -->
+  <div
+    id="privacyPolicyWindow"
+    class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto"
+    style="direction: rtl"
+  >
+    <div class="bg-white dark:bg-[#1a202c] max-w-3xl mx-auto mt-16 rounded-lg p-6 relative">
+      <button
+        id="closePrivacyPolicyBtn"
+        aria-label="close privacy policy"
+        class="absolute top-3 left-3 text-3xl font-bold text-gray-700 dark:text-gray-300 focus:outline-none"
+      >
+        &times;
+      </button>
+      <h2 class="text-xl font-bold mb-4 dark:text-white">سياسة الخصوصية</h2>
+      <div class="space-y-3 text-gray-700 dark:text-gray-300 max-h-[70vh] overflow-y-auto">
+        <p>1. لا يتم نشر محتوى الموقع بدون إذن.</p>
+        <p>2. لا يتم مشاركة معلوماتك الشخصية مع أي طرف ثالث.</p>
+        <p>3. لا يتم مشاركة الموقع مع جهات غير مصرح بها.</p>
+        <p>4. يتم احترام خصوصيتك وحماية بياناتك بشكل كامل.</p>
+        <p>5. يتم استخدام البيانات فقط لتحسين تجربة المستخدم.</p>
+        <p>6. يمكن تحديث سياسة الخصوصية من وقت لآخر وسيتم إعلام المستخدمين بذلك.</p>
+        <p>7. استخدام الموقع يعني موافقتك على هذه الشروط.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer
+    class="bg-[#2c3e50] dark:bg-[#1a202c] mt-8 py-3 px-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-white text-xs select-none"
+  >
+<div class="flex items-center space-x-3 space-x-reverse"><a
+href="https://snapchat.com/t/JR8pyoB5"
+target="_blank"
+rel="noopener noreferrer"
+aria-label="Snapchat"
+class="text-yellow-400 text-2xl hover:opacity-80"
+title="سناب شات">
+<i class="fab fa-snapchat-ghost"></i>
+      </a>
+      <a
+        href="https://www.tiktok.com/@youraccount"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="TikTok"
+        class="text-white text-2xl hover:opacity-80"
+        title="تيك توك"
+      >
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a
+        href="https://www.youtube.com/channel/yourchannel"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="YouTube"
+        class="text-red-600 text-2xl hover:opacity-80"
+        title="يوتيوب"
+      >
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a
+        href="https://t.me/youraccount"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Telegram"
+        class="text-white text-2xl hover:opacity-80"
+        title="تيليجرام"
+      >
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+    </div>
+    <div class="text-center sm:text-right cursor-pointer" id="privacyPolicyBtn" title="سياسة الخصوصية">
+      <p>سياسة الخصوصية : هنا</p>
+      <p class="mt-1 font-bold text-sm">© 2025 جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+ body {
+      font-family: "Cairo", sans-serif;
+    }
+    .modal-content-scroll {
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    .searched-highlight {
+      border: 2px solid #7c3aed;
+      border-radius: 0.5rem;
+    }
+    .modal-content-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-content-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(124, 58, 237, 0.5);
+      border-radius: 3px;
+    }
+    /* Scrollbar for sub exercises list */
+    #subExercisesList {
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    /* Swipe to delete styles */
+    .swipe-item {
+      position: relative;
+      overflow: hidden;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    .swipe-content {
+      transition: transform 0.3s ease;
+      will-change: transform;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .delete-btn {
+      position: absolute;
+      top: 0;
+      left: 90%;
+      height: 100%;
+      width: 50px;
+      background-color: #C1292E;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+      user-select: none;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+/*هنا التكملة */

@@ -1,0 +1,299 @@
+/* التصميم العام */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f8fc;
+  color: black; /* جعل النصوص سوداء */
+  text-align: center;
+}
+
+/* الأساسية */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #ccc;
+  color: black; /* جعل النصوص سوداء */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  text-align: center;
+}
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 210vh;/* طول الموقع */
+  margin: 0px;
+  background-color: #fff;
+  color: black; /* جعل النصوص سوداء */
+}
+/* تقليل الحشو */
+/* الأزرار */
+.nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #669BBC;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column; /* ترتيب العناصر عمودي */
+  align-items: center; /* محاذاة النص في المنتصف */
+  text-align: center;
+  color: black; /* لون النص */
+}
+
+.nav-item a {
+  color: black; /* لون الأيقونات */
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding: 5px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.nav-item:hover a {
+  background: #073B4C;
+  border-radius: 50%;
+  transform: scale(1.2);
+}
+
+.nav-item i {
+  color: white; /* لون الأيقونات */
+  font-size: 24px;
+}
+
+.nav-item span {
+  font-size: 14px; /* حجم النص */
+  margin-top: 5px; /* مسافة بين الأيقونة والنص */
+  color: white; /* لون النص */
+}
+
+.home-icon {
+  position: relative;
+  font-size: 46px;
+}
+
+/* الصور */
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 15px;
+  margin-top: -22px;
+  color: black; /* جعل الأسهم سوداء */
+  font-weight: bold;
+  font-size: 29px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.nutritional-table {
+  width: 90%;
+  border-collapse: collapse;
+  color: black; /* جعل النصوص سوداء */
+}
+
+.nutritional-table th,
+.nutritional-table td {
+  border: 2px solid black;
+  padding: 13px;
+  text-align: center;
+}
+
+.nutritional-table th {
+  background-color: #000;
+  color: black; /* جعل النصوص سوداء */
+}
+
+/* تتبع شرب الماء */
+.water-tracker {
+  text-align: center;
+  background-color: #BFD7EA;
+  padding: 55px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  color: black; /* جعل النصوص سوداء */
+}
+
+.glass img {
+  width: 70px;
+}
+
+.glass p {
+  font-size: 18px;
+  margin: 10px 0;
+  color: black; /* جعل النصوص سوداء */
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.controls .btn {
+  background-color: #d8d8d8;
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.controls .btn:hover {
+  background-color: #023047;
+}
+
+#amountInput {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border: none;
+  margin: 0 10px;
+  background-color: #ebebeb;
+  border-radius: 10px;
+  color: black; /* جعل النصوص سوداء */
+}
+
+.drink-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #219EBC;
+  color: black; /* جعل النصوص سوداء */
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.drink-btn img {
+  margin-right: 110px;
+}
+
+.drink-btn:hover {
+  background-color: #BDE0FE;
+}
+
+/* البطاقات */
+h1 {
+  color: #d9534f;
+  margin-bottom: 20px;
+}
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* يجعل الصورة تمتد بطول البطاقة */
+    background-color: #2d5d52;
+    color: white;
+    border-radius: 10px;
+    margin: 10px auto;
+    padding: 15px;
+    width: 99%;
+    max-width: 300px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    overflow: hidden; /* يضمن عدم خروج الصورة عن حدود البطاقة */
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-content {
+    text-align: right;
+    max-width: 70%;
+    padding: 10px;
+}
+
+.card-content h2 {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.card-content p {
+    margin: 5px 0 0;
+    font-size: 1em;
+}
+
+.card-image {
+    width: 30%; /* تجعل الصورة تأخذ 30% من عرض البطاقة */
+    height: 100%;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* يضمن أن الصورة تغطي المساحة بالكامل */
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; /* يجعل الصورة تندمج مع البطاقة */
+}
+.card::before {
+    content: "📄"; /* رمز ملف */
+    font-size: 24px;
+    margin-left: 10px;
+}
+

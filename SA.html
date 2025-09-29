@@ -1,0 +1,575 @@
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>التمارين</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="SA.css">
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="bg-white relative min-h-screen flex flex-col">
+  <!-- Sidebar -->
+  <aside
+    aria-label="Sidebar Navigation"
+    class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform z-50 flex flex-col"
+    id="sidebar"
+  >
+    <div class="flex justify-between items-center p-4 border-b border-gray-300">
+      <h2 class="text-xl font-semibold">القائمة</h2>
+      <button
+        aria-label="إغلاق القائمة"
+        class="text-2xl text-gray-700 hover:text-black"
+        id="sidebarCloseBtn"
+        type="button"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-4 p-4 text-lg font-semibold text-gray-800">
+      <button
+        class="sidebar-link hover:text-[#E26A56]"
+        data-link="home"
+        type="button"
+      >
+        <li>
+          <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        </li>
+      </button>
+      <button
+        class="sidebar-link hover:text-[#E26A56]"
+        data-link="nutrition"
+        type="button"
+      >
+        <li>
+          <a href="Meals/T.D.N.html"><i class="fas fa-fork"></i> التغذية</a>
+        </li>
+      </button>
+      <button
+        class="sidebar-link hover:text-[#E26A56]"
+        data-link="information"
+        type="button"
+      >
+        <li>
+          <a href="#"><i class="fas fa-info-circle"></i>المعلومات</a>
+        </li>
+      </button>
+      <button
+        class="sidebar-link hover:text-[#E26A56]"
+        data-link="settings"
+        type="button"
+      >
+        <li>
+          <a href="#"><i class="fas fa-cog"></i> الإعدادات</a>
+        </li>
+      </button>
+    </nav>
+  </aside>
+  <!-- Overlay for sidebar and modals -->
+  <div
+    class="fixed inset-0 bg-black bg-opacity-40 hidden z-40"
+    id="overlay"
+    tabindex="-1"
+  ></div>
+  <!-- Header -->
+  <header
+    class="flex items-center justify-between bg-[#E26A56] px-4 py-3 sticky top-0 z-30"
+  >
+    <button aria-label="فتح القائمة" class="text-black text-3xl" id="sidebarOpenBtn" type="button">
+      <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="text-white text-2xl font-semibold">GYM</h1>
+    <button
+      aria-haspopup="dialog"
+      class="flex items-center gap-2 bg-[#E26A56] text-black font-semibold text-lg px-3 py-2 rounded"
+      id="recordWorkoutBtn"
+      type="button"
+    >
+      <img
+        alt="أيقونة مذكرة"
+        aria-hidden="true"
+        class="w-10 h-10 object-contain"
+        height="24"
+        src="https://up6.cc/2025/05/174757856436551.jpeg"
+        width="24"
+      />
+      سجل تمارين غداً
+    </button>
+  </header>
+  <!-- Tabs for exercises and create -->
+  <section
+    class="flex gap-4 px-4 py-3 border-b border-gray-300 bg-white sticky top-[56px] z-20 overflow-x-auto"
+  >
+    <button
+      aria-selected="false"
+      class="tab-btn border-b-2 border-transparent text-gray-700 font-semibold pb-1 whitespace-nowrap"
+      data-tab="myExercises"
+      type="button"
+    >
+      تماريني الخاصة
+    </button>
+    <button
+      aria-selected="true"
+      class="tab-btn border-b-2 border-[#E26A56] text-[#E26A56] font-semibold pb-1 whitespace-nowrap"
+      data-tab="allExercises"
+      type="button"
+    >
+      جميع التمارين
+    </button>
+    <button
+      id="createExerciseTabBtn"
+      type="button"
+      class="border-b-2 border-transparent text-gray-700 font-semibold pb-1 whitespace-nowrap hover:border-[#E26A56] hover:text-[#E26A56] transition"
+    >
+      إنشاء تمرين
+    </button>
+  </section>
+  <!-- Search and filter -->
+  <section
+    class="flex items-center gap-3 px-4 py-3 border-b border-gray-300 bg-white sticky top-[104px] z-20"
+  >
+    <button aria-label="فتح الفلتر" class="text-black text-3xl" id="filterOpenBtn" type="button">
+      <i class="fas fa-filter"></i>
+    </button>
+    <div
+      class="flex items-center flex-1 rounded-full border border-gray-300 overflow-hidden"
+    >
+      <button
+        aria-label="بحث"
+        class="bg-[#E26A56] px-5 py-5 flex items-center justify-center text-black text-xl"
+        id="searchBtn"
+        type="button"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+      <input
+        aria-label="حقل البحث عن التمرين"
+        class="flex-1 text-right text-gray-400 placeholder-gray-400 outline-none px-4 py-2 text-lg"
+        id="searchInput"
+        placeholder="البحث عن تمرين"
+        type="text"
+      />
+    </div>
+  </section>
+
+  <!-- No exercises message -->
+  <p
+    aria-live="polite"
+    class="hidden text-center text-gray-500 mt-4 px-4"
+    id="noExercisesMsg"
+    role="alert"
+  >
+    لا توجد تمارين لهذه العضلة
+  </p>
+
+  <!-- Exercises list -->
+  <main
+    class="px-4 py-4 space-y-6 flex-1 overflow-auto"
+    id="exercisesList"
+  >
+    <!-- Items will be dynamically inserted here -->
+  </main>
+  <!-- Create Exercise Modal -->
+  <div
+    aria-labelledby="createExerciseTitle"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4 hidden z-50"
+    id="createExerciseModal"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="bg-white rounded-lg max-w-3xl w-full p-6 relative max-h-[90vh] overflow-y-auto flex flex-col"
+      style="font-family: 'Cairo', sans-serif"
+    >
+      <button
+        aria-label="إغلاق نافذة إنشاء التمرين"
+        class="absolute top-5 left-5 text-2xl text-gray-500 hover:text-[#cc0038]"
+        id="createExerciseCloseBtn"
+        type="button"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+      <h2 class="text-xl font-semibold mb-4 text-center" id="createExerciseTitle">
+        إنشاء تمرين جديد
+      </h2>
+      <form id="createExerciseForm" class="flex flex-col gap-4" novalidate>
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex-1 flex flex-col gap-2">
+            <label for="exerciseName" class="font-semibold text-right"
+              >اسم التمرين:</label
+            >
+            <input
+              type="text"
+              id="exerciseName"
+              name="exerciseName"
+              required
+              class="border border-gray-300 rounded px-3 py-2 text-right"
+              placeholder="أدخل اسم التمرين"
+            />
+          </div>
+          <div class="flex-1 flex flex-col gap-2">
+            <label for="exerciseLevel" class="font-semibold text-right"
+              >المستوى:</label
+            >
+            <select
+              id="exerciseLevel"
+              name="exerciseLevel"
+              required
+              class="border border-gray-300 rounded px-3 py-2 text-right"
+            >
+              <option value="" disabled selected>اختر المستوى</option>
+              <option value="مبتدئ">مبتدئ</option>
+              <option value="متوسط">متوسط</option>
+              <option value="متقدم">متقدم</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex-1 flex flex-col gap-2">
+            <label for="exerciseEquipment" class="font-semibold text-right"
+              >الأدوات (افصل بفاصلة):</label
+            >
+            <input
+              type="text"
+              id="exerciseEquipment"
+              name="exerciseEquipment"
+              class="border border-gray-300 rounded px-3 py-2 text-right"
+              placeholder="مثال: دمبلز, بار"
+            />
+          </div>
+          <div class="flex-1 flex flex-col gap-2">
+            <label for="exerciseTargetMuscle" class="font-semibold text-right"
+              >العَضَلَة المستهدفة:</label
+            >
+            <input
+              type="text"
+              id="exerciseTargetMuscle"
+              name="exerciseTargetMuscle"
+              class="border border-gray-300 rounded px-3 py-2 text-right"
+              placeholder="مثال: عضلات البطن"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="exerciseSteps" class="font-semibold text-right"
+            >خطوات التمرين:</label
+          >
+          <textarea
+            id="exerciseStepsInput"
+            name="exerciseSteps"
+            rows="4"
+            required
+            class="border border-gray-300 rounded px-3 py-2 text-right"
+            placeholder="اكتب خطوات التمرين هنا..."
+          ></textarea>
+        </div>
+<div class="flex flex-col md:flex-row gap-4">
+<div class="flex-1 flex flex-col gap-2">
+<label for="exerciseImageUrl" class="font-semibold text-right">رابط صورة التمرين:</label>
+من خلال مواقع رفع الصور
+<a href="https://www.0zz0.com" target="_blank">انقر هنا👉🏻</a>
+<input
+              type="url"
+              id="exerciseImageUrl"
+              name="exerciseImageUrl"
+              class="border border-gray-300 rounded px-3 py-2 text-right"
+              placeholder="https://example.com/image.jpg"
+            />
+          </div>
+          <div class="flex-1 flex flex-col gap-2">
+            <label for="exerciseVideoUrl" class="font-semibold text-right"
+              >رابط التمرين فيديو اليوتيوب:</label
+            >
+            <input
+              type="url"
+              id="exerciseVideoUrl"
+              name="exerciseVideoUrl"
+              class="border border-gray-300 rounded px-3 py-2 text-right"
+              placeholder="https://www.youtube.com/watch?v=..."
+            />
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="bg-[#E26A56] text-black font-semibold py-2 rounded hover:bg-[#25A244] transition"
+        >
+          إنشاء التمرين
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- Sub Exercises Modal -->
+  <div
+    aria-labelledby="subExercisesTitle"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4 hidden z-50"
+    id="subExercisesModal"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="bg-white rounded-lg max-w-4xl w-full p-6 relative max-h-[90vh] overflow-y-auto flex flex-col"
+      style="font-family: 'Cairo', sans-serif"
+    >
+      <button
+        aria-label="إغلاق نافذة التمارين الفرعية"
+        class="absolute top-3 left-3 text-2xl text-gray-700 hover:text-black"
+        id="subExercisesCloseBtn"
+        type="button"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+      <h2 class="text-xl font-semibold mb-4 text-center" id="subExercisesTitle"></h2>
+      <div
+        id="subExercisesList"
+        class="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto"
+      ></div>
+    </div>
+  </div>
+  <!-- Exercise Detail Modal -->
+  <div
+    aria-labelledby="exerciseDetailTitle"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4 hidden z-50"
+    id="exerciseDetailModal"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="bg-white rounded-lg max-w-4xl w-full p-6 relative max-h-[90vh] overflow-y-auto flex flex-col"
+      style="font-family: 'Cairo', sans-serif"
+    >
+      <button
+        aria-label="إغلاق نافذة تفاصيل التمرين"
+        class="absolute top-3 left-3 text-2xl text-gray-700 hover:text-black"
+        id="exerciseDetailCloseBtn"
+        type="button"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+      <h2 class="text-xl font-semibold mb-4 text-center" id="exerciseDetailTitle"></h2>
+      <div class="flex flex-col md:flex-row gap-6">
+        <div class="flex-1">
+          <img
+            alt=""
+            class="w-full max-h-64 object-contain rounded-lg mb-4"
+            id="exerciseDetailImage"
+            src=""
+          />
+          <iframe
+            allowfullscreen=""
+            class="w-full aspect-video rounded-lg"
+            id="exerciseDetailVideo"
+            src=""
+            title="فيديو التمرين"
+          ></iframe>
+        </div>
+        <div class="flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-semibold mb-2 text-right">خطوات التمرين</h3>
+            <p
+              class="text-right text-lg leading-relaxed whitespace-pre-line"
+              id="exerciseSteps"
+            ></p>
+            <div class="mt-4 text-right">
+              <p>
+                <strong>المستوى:</strong> <span id="exerciseLevel"></span>
+              </p>
+              <p>
+                <strong>الأدوات:</strong> <span id="exerciseEquipment"></span>
+              </p>
+              <p>
+                <strong>العَضَلَة المستهدفة:</strong>
+                <span id="exerciseTargetMuscle"></span>
+              </p>
+            </div>
+          </div>
+          <div
+            class="mt-6 border-t border-gray-300 pt-3 text-right text-lg font-semibold"
+          >
+            <div class="flex justify-between items-center mb-3">
+              <div>
+                الوقت:
+                <span id="timerDisplay">00:00</span>
+              </div>
+              <div class="flex gap-3">
+                <button
+                  class="bg-[#E26A56] text-black px-3 py-1 rounded hover:bg-[#cc5a48] transition"
+                  id="startTimerBtn"
+                  type="button"
+                >
+                  ابدأ
+                </button>
+                <button
+                  class="bg-gray-300 text-gray-700 px-3 py-1 rounded hover:bg-gray-400 transition"
+                  id="stopTimerBtn"
+                  type="button"
+                >
+                  أوقف
+                </button>
+              </div>
+              <div>
+                السعرات المحروقة:
+                <span id="caloriesBurned">0</span>
+              </div>
+            </div>
+            <div
+              class="flex justify-between items-center text-right text-lg font-semibold"
+            >
+              <div>
+                التكرارات:
+                <input
+                  aria-label="عدد التكرارات"
+                  class="w-16 text-center border border-gray-300 rounded px-2 py-1"
+                  id="repetitionsInput"
+                  min="1"
+                  type="number"
+                  value="1"
+                />
+              </div>
+              <div>
+                الدقائق لكل تكرار:
+                <input
+                  aria-label="الدقائق لكل تكرار"
+                  class="w-16 text-center border border-gray-300 rounded px-2 py-1"
+                  id="minutesPerRepInput"
+                  min="1"
+                  type="number"
+                  value="1"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Record Workout Modal -->
+  <div
+    aria-labelledby="recordWorkoutTitle"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4 hidden z-50"
+    id="recordWorkoutModal"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="bg-white rounded-lg max-w-md w-full p-6 relative flex flex-col"
+      style="font-family: 'Cairo', sans-serif"
+    >
+      <button
+        aria-label="إغلاق نافذة تسجيل التمرين"
+        class="absolute top-3 left-3 text-2xl text-gray-700 hover:text-black"
+        id="recordWorkoutCloseBtn"
+        type="button"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+      <h2 class="text-xl font-semibold mb-4 text-center" id="recordWorkoutTitle">
+        سجل تمرين الغد
+      </h2>
+      <textarea
+        aria-label="حقل كتابة تمرين الغد"
+        class="border border-gray-300 rounded-md p-3 resize-none text-right text-lg"
+        id="workoutTextarea"
+        placeholder="اكتب تمرين الغد هنا..."
+        rows="8"
+      ></textarea>
+      <button
+        class="mt-4 bg-[#E26A56] text-black font-semibold py-2 rounded hover:bg-[#cc5a48] transition"
+        id="saveWorkoutBtn"
+        type="button"
+      >
+        حفظ
+      </button>
+    </div>
+  </div>
+  <!-- Filter Modal -->
+  <div
+    aria-labelledby="filterTitle"
+    aria-modal="true"
+    class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4 hidden z-50"
+    id="filterModal"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="bg-white rounded-lg max-w-3xl w-full p-6 relative max-h-[90vh] overflow-hidden flex flex-col"
+      style="font-family: 'Cairo', sans-serif"
+    >
+      <button
+        aria-label="إغلاق نافذة الفلتر"
+        class="absolute top-3 left-3 text-2xl text-gray-700 hover:text-black"
+        id="filterCloseBtn"
+        type="button"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+      <h2 class="text-xl font-semibold mb-4 text-center" id="filterTitle">
+        الفلترة
+      </h2>
+      <div class="modal-content-scroll overflow-y-auto flex-1">
+        <section class="mb-6">
+          <h3 class="text-lg font-semibold mb-2">مستوى التمرين</h3>
+          <div class="flex gap-4 flex-wrap">
+            <button
+              aria-pressed="true"
+              class="filter-level-btn px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-[#E26A56] hover:text-white transition"
+              data-level="all"
+              type="button"
+            >
+              الكل
+            </button>
+            <button
+              aria-pressed="false"
+              class="filter-level-btn px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-[#E26A56] hover:text-white transition"
+              data-level="مبتدئ"
+              type="button"
+            >
+              مبتدئ
+            </button>
+            <button
+              aria-pressed="false"
+              class="filter-level-btn px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-[#E26A56] hover:text-white transition"
+              data-level="متوسط"
+              type="button"
+            >
+              متوسط
+            </button>
+            <button
+              aria-pressed="false"
+              class="filter-level-btn px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-[#E26A56] hover:text-white transition"
+              data-level="متقدم"
+              type="button"
+            >
+              متقدم
+            </button>
+          </div>
+        </section>
+        <section>
+          <h3 class="text-lg font-semibold mb-2">المعدات المستخدمة</h3>
+          <div
+            class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 max-h-[40vh] overflow-y-auto"
+            id="equipmentList"
+          ></div>
+        </section>
+      </div>
+      <button
+        class="mt-4 bg-[#E26A56] text-black font-semibold py-2 rounded hover:bg-[#cc5a48] transition"
+        id="showResultsBtn"
+        type="button"
+      >
+        عرض النتائج
+      </button>
+    </div>
+  </div>
+<script src="SA.js"></script>
+</body>
+</html>

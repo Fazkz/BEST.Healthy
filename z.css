@@ -1,0 +1,30 @@
+ body {
+      font-family: "Almarai", sans-serif;
+    }
+    .balloon {
+      position: absolute;
+      top: -18px;
+      right: 8px;
+      font-size: 1.25rem;
+      pointer-events: none;
+      user-select: none;
+      animation: floatUp 3s ease-in-out infinite;
+    }
+    @keyframes floatUp {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+    button.relative {
+      position: relative;
+    }
+    /* Sidebar styles */
+    #sidebar {
+      transition: transform 0.3s ease-in-out;
+    }
+    #sidebar.closed {
+      transform: translateX(100%);
+    }
