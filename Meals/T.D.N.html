@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>نظام التغذية المتقدم مع المفضلة وإنشاء طعام</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="diet.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+<body class="bg-white text-black max-w-md mx-auto min-h-screen flex flex-col relative">
+
+  <!-- Hamburger Sidebar -->
+  <aside
+    id="sidebar"
+    class="fixed top-0 bottom-0 right-0 w-64 bg-white shadow-lg z-50 closed flex flex-col"
+    aria-label="القائمة الجانبية"
+  >
+    <header class="flex justify-between items-center p-4 border-b border-gray-200">
+      <h2 class="text-lg font-semibold">القائمة</h2>
+      <button id="closeSidebarBtn" aria-label="إغلاق القائمة" class="text-2xl">
+        <i class="fas fa-times"></i>
+      </button>
+    </header>
+    <nav class="flex flex-col gap-2 p-4 text-gray-700 text-base">
+      <a href="#" class="flex items-center gap-3 hover:text-blue-600">
+        <i class="fas fa-home text-lg w-6"></i> الصفحة الرئيسية
+      </a>
+      <a href="#" class="flex items-center gap-3 hover:text-blue-600">
+        <i class="fas fa-dumbbell text-lg w-6"></i> التمارين
+      </a>
+      <a href="#" class="flex items-center gap-3 hover:text-blue-600">
+        <i class="fas fa-calculator text-lg w-6"></i> الآلة الحاسبة
+      </a>
+      <a href="#" class="flex items-center gap-3 hover:text-blue-600">
+        <i class="fas fa-info-circle text-lg w-6"></i> العناصر
+      </a>
+      <a href="#" class="flex items-center gap-3 hover:text-blue-600">
+        <i class="fas fa-book text-lg w-6"></i> دفتر الملاحظات
+      </a>
+    </nav>
+<a
+href="https://drive.google.com/file/d/14aAsda-q9kJ8OVUWkzxnIGbES-JabiIH/view?usp=drivesdk"
+    download="Nizamak_Alghithaee.pdf"
+    class="inline-flex items-center space-x-2 space-x-reverse bg-green-200 text-green-800 text-sm font-semibold px-3 py-1.5 rounded-md hover:bg-green-300 transition">
+    <span>نظامك الغذائي</span>
+    <i class="fas fa-download"></i>
+  </a> 
+  </aside>
+  <!-- Overlay for sidebar -->
+  <div
+    id="sidebarOverlay"
+    class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden"
+    tabindex="-1"
+  ></div>
+  <!-- Header -->
+  <header
+    class="flex items-center justify-between p-4 border-b border-gray-200 sticky top-0 bg-white z-30"
+  >
+    <button
+      id="openSidebarBtn"
+      aria-label="فتح القائمة"
+      class="text-2xl text-gray-800"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="text-lg font-normal">نظام التغذية🧾</h1>
+    <div class="w-6"></div>
+  </header>
+
+  <!-- Toggle Calendar Button -->
+  <div class="px-4 pt-4">
+    <button
+      id="toggleCalendarBtn"
+      class="w-full bg-gray-300 text-gray-700 text-sm rounded-md py-1.5 flex justify-center items-center gap-1"
+      aria-expanded="true"
+      aria-controls="calendarSection"
+    >
+      إخفاء/إظهار تقويم التاريخ
+      <i class="fas fa-chevron-down text-xs"></i>
+    </button>
+  </div>
+
+  <!-- Calendar Section -->
+  <section
+    id="calendarSection"
+    class="bg-white rounded-xl shadow-md mx-4 mt-4 p-4 select-none"
+    aria-label="تقويم التاريخ"
+  >
+    <div
+      class="flex justify-between items-center mb-2 text-sm font-semibold text-gray-800"
+    >
+<button
+id="prevMonthBtn"
+aria-label="الشهر السابق"
+class="flex items-center gap-1">
+<i class="fas fa-chevron-right"></i>
+        الشهر السابق
+      </button>
+      <div id="calendarMonthYear" class="text-center font-semibold"></div>
+<button
+id="nextMonthBtn"
+aria-label="الشهر التالي"
+class="flex items-center gap-1">
+        الشهر التالي
+<i class="fas fa-chevron-left"></i>
+      </button>
+    </div>
+    <div id="calendarDays" class="grid grid-cols-7 gap-2 text-center text-sm font-normal text-gray-800"></div>
+  </section>
+
+  <!-- Buttons below calendar -->
+  <section class="flex gap-4 px-4 mt-4">
+<button
+      id="deleteAllBtn"
+      class="flex-1 bg-red-700 text-white text-sm py-2 rounded-md font-semibold"
+      type="button"
+    >
+<i class="fa-solid fa-trash"></i>حذف النظام الغذائي كامل
+    </button>
+<button
+      id="goTodayBtn"
+      class="flex-1 bg-blue-500 text-white text-sm py-2 rounded-md font-semibold"
+      type="button">
+<i class="fa-solid fa-backward"></i>
+      الرجوع لليوم
+    </button>
+  </section>
+<!--جدول الاحتياج -->
+<div class="needs-card">
+  <i class="fa-solid fa-pen-to-square edit-icon" id="editBtn" title="تعديل"></i>
+  <div class="grid-container">
+    <div class="need-box" id="caloriesBox">🔥 <span id="caloriesValue">0</span> سعرة</div>
+    <div class="need-box" id="fatBox">🥑 <span id="fatValue">0</span> جم دهون</div>
+    <div class="need-box" id="carbBox">🍞 <span id="carbValue">0</span> جم كارب</div>
+    <div class="need-box" id="proteinBox">🍗 <span id="proteinValue">0</span> جم بروتين</div>
+  </div>
+</div>
+
+<!-- النافذة المنبثقة -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closePopup">&times;</span>
+    <h2>تعديل الاحتياجات</h2>
+    <form id="needsForm">
+      <label>السعرات الحرارية:</label>
+      <input type="number" id="caloriesInput" required>
+      
+      <label>الدهون (جم):</label>
+      <input type="number" id="fatInput" required>
+      
+      <label>الكارب (جم):</label>
+      <input type="number" id="carbInput" required>
+      
+      <label>البروتين (جم):</label>
+      <input type="number" id="proteinInput" required>
+      
+      <button type="submit" class="save-btn">حفظ</button>
+    </form>
+  </div>
+</div>
+ <!-- ملخص التغذية -->
+  <section
+    id="nutritionSummary"
+    class="bg-gray-50 rounded-lg mx-4 mt-6 p-4"
+    aria-label="ملخص التغذية"
+  >
+    <h3 class="font-semibold mb-3">ملخص التغذية</h3>
+    <div class="grid grid-cols-2 gap-4 text-center text-xs font-semibold">
+      <div class="bg-white rounded-md py-3 calories">
+        <p class="text-yellow-400 mb-1">السعرات الحرارية</p>
+        <p id="caloriesSummary" class="text-yellow-400 text-2xl font-bold">0</p>
+      </div>
+      <div class="bg-white rounded-md py-3 fats">
+        <p class="text-red-600 mb-1">دهون</p>
+        <p id="fatSummary" class="text-red-600 text-2xl font-bold">0,0 ج</p>
+      </div>
+      <div class="bg-white rounded-md py-3 protein">
+        <p class="text-teal-600 mb-1">بروتين</p>
+        <p id="proteinSummary" class="text-teal-600 text-2xl font-bold">0,0 ج</p>
+      </div>
+      <div class="bg-white rounded-md py-3 carbs">
+        <p class="text-yellow-700 mb-1">كارب</p>
+        <p id="carbSummary" class="text-yellow-700 text-2xl font-bold">0,0 ج</p>
+      </div>
+    </div>
+  </section>
+  <!-- Add food to table -->
+  <section class="flex items-center gap-3 px-4 mt-6">
+    <button
+    id="openAddFoodModalBtn"
+   </button>
+    </button>
+  </section>
+  <!-- قسم الوجبات -->
+  <section
+    id="mealsSection"
+    class="px-4 mt-6 space-y-6 flex-1 overflow-auto meals-scroll"
+    aria-label="وجبات اليوم"
+  >
+    <!-- Meals will be dynamically inserted here -->
+  </section>
+  <!-- Add Food Modal -->
+  <div
+    id="addFoodModal"
+    class="fixed inset-0 flex items-center justify-center z-50 hidden overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="addFoodModalTitle"
+  >
+    <div
+      class="bg-white rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col"
+    >
+      <header class="flex justify-between items-center p-4 border-b border-gray-200">
+        <h2 id="addFoodModalTitle" class="text-lg font-semibold">إضافة طعام</h2>
+        <button
+          id="closeAddFoodModalBtn"
+          aria-label="إغلاق"
+          class="text-2xl text-gray-700"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </header>
+      <section class="p-4 flex flex-col gap-3 flex-1 overflow-hidden">
+        <!-- Search and filter -->
+        <form
+          id="foodSearchForm"
+          class="flex gap-2"
+          onsubmit="return false"
+          aria-label="بحث وفلترة الأطعمة"
+        >
+<input
+id="foodSearchInput"
+type="search"
+placeholder="ابحث عن الطعام"
+class="flex-1 border border-gray-300 rounded-md px-3 py-1 text-sm"
+aria-label="محرك بحث عن الطعام"/>
+<button
+id="foodSearchBtn"
+type="submit"
+class="bg-black text-white px-3 rounded-md text-sm font-semibold"
+aria-label="زر البحث">
+            بحث
+</button>
+          <select
+id="foodFilterSelect"
+class="border border-gray-300 rounded-md px-2 py-1 text-sm"
+aria-label="فلتر الأطعمة">
+  <option value="random">ترتيب عشوائي</option>
+ <option value="caloriesAsc">السعرات من الأقل إلى الأعلى</option>
+     <option value="caloriesDesc">السعرات من الأعلى إلى الأقل</option>
+     <option value="fatAsc">الدهون من الأقل إلى الأعلى</option>
+     <option value="fatDesc">الدهون من الأعلى إلى الأقل</option>
+      <option value="proteinAsc">البروتين من الأقل إلى الأعلى</option>
+     <option value="proteinDesc">البروتين من الأعلى إلى الأقل</option>
+      <option value="carbAsc">الكارب من الأقل إلى الأعلى</option>
+      <option value="carbDesc">الكارب من الأعلى إلى الأقل</option>
+          </select>
+        </form>
+        <!-- فئات -->
+<div class="flex flex-col gap-2 overflow-hidden flex-1">
+<div
+id="mainCategories"
+class="flex gap-3 overflow-x-auto maincat-scroll pb-2"
+role="list"
+aria-label="التصنيفات الأساسية">
+<!-- Main categories inserted by JS -->
+  </div>
+<div
+id="subCategories"
+class="flex gap-3 overflow-x-auto subcat-scroll pb-2"
+role="list"
+aria-label="التصنيفات الفرعية">
+<!--التصنيفات الفرعية في جافا-->
+         </div>
+        </div>
+        <!-- Food list -->
+        <div
+          id="foodList"
+          class="overflow-y-auto food-list-scroll flex flex-col gap-3 relative"
+          aria-label="قائمة الأطعمة"
+        >
+          <!-- Food items inserted by JS -->
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- Food Detail Modal -->
+  <div
+    id="foodDetailModal"
+    class="fixed inset-0 flex items-center justify-center z-50 hidden overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="foodDetailModalTitle"
+  >
+    <div
+      class="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-auto flex flex-col"
+    >
+      <header class="flex justify-between items-center p-4 border-b border-gray-200">
+        <h2 id="foodDetailModalTitle" class="text-lg font-semibold"></h2>
+        <button
+          id="closeFoodDetailModalBtn"
+          aria-label="إغلاق"
+          class="text-2xl text-gray-700"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </header>
+      <section class="p-4 flex flex-col gap-4">
+        <img
+          id="foodDetailImage"
+          src=""
+          alt=""
+          class="w-full h-48 object-cover rounded-md"
+        />
+        <div>
+          <h3 class="font-semibold mb-2">القيم الغذائية لكل 100 جم</h3>
+        <ul class="text-sm space-y-1" id="foodNutritionDetails">
+            <!-- Nutrition details inserted by JS -->
+          </ul>
+        </div>
+        <form id="addFoodToMealForm" class="flex flex-col gap-3" onsubmit="return false" aria-label="إضافة طعام إلى وجبة">
+          <label for="mealSelect" class="font-semibold">اختر الوجبة</label>
+          <select
+            id="mealSelect"
+            class="border border-gray-300 rounded-md px-3 py-1"
+            required
+            aria-required="true"
+          >
+<option value="" disabled selected>اختر الوجبة</option>
+<option value="breakfast">إفطار</option>
+<option value="lunch">غداء</option>
+<option value="dinner">عشاء</option>
+<option value="snack">وجبة خفيفة</option>
+</select>
+<label for="quantityInput" class="font-semibold">الكمية (غرام)
+</label>
+<input
+id="quantityInput"
+type="number"
+min="1"
+value="100"
+class="border border-gray-300 rounded-md px-3 py-1"
+aria-label="كمية الطعام بالغرام"
+required/>
+<button
+id="addFoodToMealBtn"
+type="submit"
+class="bg-black text-white py-2 rounded-md font-semibold">
+            إضافة طعام
+</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <!-- Create Food Modal -->
+  <div id="createFoodModal" class="fixed inset-0 flex hidden" role="dialog" aria-modal="true" aria-labelledby="createFoodModalTitle">
+    <div class="modal-content relative">
+      <button aria-label="إغلاق" class="modal-close-btn" id="closeCreateFoodModalBtn"><i class="fas fa-times"></i></button>
+      <h2 id="createFoodModalTitle">إنشاء طعام</h2>
+      <form id="createFoodForm" onsubmit="return false;" novalidate>
+        <!-- البطاقة الأولى -->
+        <label for="foodName">اسم الطعام <span class="text-red-600">*</span></label>
+        <input type="text" id="foodName" name="foodName" required aria-required="true" autocomplete="off" />
+        <label for="companyName">اسم الشركة المنتجة (اختياري)</label>
+        <input type="text" id="companyName" name="companyName" autocomplete="off" />
+        <label for="foodCategory">التصنيف</label>
+        <input type="text" id="foodCategory" name="foodCategory" value="وجباتي" readonly tabindex="-1" aria-readonly="true" />
+        <!-- البطاقة الثانية -->
+        <label for="portion">المقدار/الحصة (اختياري)</label>
+        <input type="text" id="portion" name="portion" autocomplete="off" />
+        <label for="weight">الوزن <span class="text-red-600">*</span></label>
+        <div class="flex gap-2">
+          <input type="number" id="weight" name="weight" min="0.1" step="0.1" required aria-required="true" class="flex-grow" />
+          <select id="weightUnit" name="weightUnit" required aria-required="true" class="w-24">
+            <option value="">اختر الوحدة</option>
+            <option value="جرام">جرام</option>
+            <option value="مل">مل</option>
+          </select>
+        </div>
+        <!-- البطاقة الثالثة -->
+        <label for="calories">السعرات الحرارية (جرام) <span class="text-red-600">*</span></label>
+        <input type="number" id="calories" name="calories" min="0" step="0.1" required aria-required="true" />
+        <label for="protein">البروتين (جرام) <span class="text-red-600">*</span></label>
+        <input type="number" id="protein" name="protein" min="0" step="0.1" required aria-required="true" />
+        <label for="carb">الكربوهيدرات (جرام) <span class="text-red-600">*</span></label>
+        <input type="number" id="carb" name="carb" min="0" step="0.1" required aria-required="true" />
+        <label for="fat">الدهون (جرام) <span class="text-red-600">*</span></label>
+        <input type="number" id="fat" name="fat" min="0" step="0.1" required aria-required="true" />
+        <!-- البطاقة الرابعة -->
+        <label for="imageUrl">رابط الصورة (اختياري)</label>
+        <input type="url" id="imageUrl" name="imageUrl" placeholder="https://example.com/image.jpg" autocomplete="off" />
+        <label for="imageFile">أو اختر صورة من جهازك (اختياري)</label>
+        <input type="file" id="imageFile" name="imageFile" accept="image/*" />
+        <button type="submit" id="submitCreateFoodBtn">إضافة</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Favorites Modal -->
+  <div id="favoritesModal" class="fixed inset-0 flex hidden" role="dialog" aria-modal="true" aria-labelledby="favoritesModalTitle">
+    <div class="modal-content relative">
+      <button aria-label="إغلاق" class="modal-close-btn" id="closeFavoritesModalBtn"><i class="fas fa-times"></i></button>
+      <h2 id="favoritesModalTitle">المفضلة</h2>
+      <div id="favoritesList" tabindex="0" aria-label="قائمة الأطعمة المفضلة">
+        <!-- عناصر المفضلة تظهر هنا -->
+      </div>
+    </div>
+  </div>
+<!--التعرف على الطعام --> 
+<div class="popup" id="foodPopup">
+   <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>تحليل الاطعمة</h2>
+
+    <div class="image-placeholder">
+     <img id="foodImage" src="#" alt="صورة الطعام"
+      style="max-width: 100%; display: none;">
+     <i class="bx bx-image-add" style="font-size: 5em;"></i>
+     <p>اختر صورة طعام</p>
+    </div>
+
+    <input type="file" id="imageUpload" accept="image/*">
+    <button onclick="analyzeImage()">تحليل الصورة</button>
+
+    <div class="food-info" id="foodInfo" style="display: none;">
+     <h3>نتيجة التحليل</h3>
+     <img id="analyzedImage" src="#" alt="صورة الطعام"
+      style="max-width: 100%;">
+     <p id="foodName">اسم الطعام: </p>
+     <p id="foodComponents">المكونات: </p>
+     <p id="foodNutrition">القيم الغذائية: </p>
+    </div>
+   </div>
+  </div>
+  <!-- النافذة المنبثقة -->
+ 
+  <!-- زر دائري مثبت أسفل يسار -->
+  <div id="floatingMenuBtn" aria-haspopup="true" aria-expanded="false" aria-label="فتح القائمة السريعة" role="button" tabindex="0">
+    <i class="fas fa-plus"></i>
+  </div>
+  <div id="floatingMenuOptions" role="menu" aria-hidden="true">
+    <button id="btnAddFood" role="menuitem"><i class="fas fa-utensils"></i> إضافة طعام</button>
+    <button id="btnCreateFood" role="menuitem"><i class="fas fa-plus-circle"></i> إنشاء طعام</button>
+  <button id="openPopup" role="menuitem"><i class="bx bx-scan"></i>التعرف</button>
+    <button id="btnFavorites" role="menuitem"><i class="fas fa-star"></i>المفضلة</button>
+  </div>
+   <!-- Footer -->
+  <footer
+    class="flex justify-center items-center gap-6 py-4 text-xs text-gray-500"
+    aria-label="حقوق الطبع والنشر وروابط التواصل الاجتماعي"
+  >
+    <span>© 2025 جميع الحقوق محفوظة</span>
+    <a
+      href="https://t.me/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="تيليجرام"
+      class="text-blue-500 text-xl"
+    >
+      <i class="fab fa-telegram-plane"></i>
+    </a>
+    <a
+      href="https://www.tiktok.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="تيك توك"
+      class="text-black text-xl"
+    >
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a
+      href="https://www.snapchat.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="سناب شات"
+      class="text-yellow-400 text-xl"
+    >
+      <i class="fab fa-snapchat-ghost"></i>
+    </a>
+  </footer>
+<script src="diet.js"></script>
+</body>
+</html>
