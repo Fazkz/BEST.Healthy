@@ -1,0 +1,453 @@
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>حاسبة السعرات الحرارية ومؤشر كتلة الجسم</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="z.css">
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-white text-gray-900 min-h-screen flex flex-col items-center px-4 py-6 overflow-x-hidden">
+  <header class="w-full max-w-md flex items-center justify-between mb-6 relative z-20">
+    <button aria-label="قائمة التنقل" id="hamburger-btn" class="text-gray-700 text-2xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="text-lg font-bold text-green-700 select-none">حاسبة السعرات الحرارية</div>
+    <div class="w-8"></div>
+  </header>
+<a href="sports/sports.html"></a>
+  <!-- Sidebar -->
+  <nav id="sidebar" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg p-6 closed z-30 flex flex-col space-y-6">
+    <button id="close-sidebar" aria-label="إغلاق القائمة" class="self-start text-gray-700 text-2xl focus:outline-none mb-4">
+      <i class="fas fa-times"></i>
+    </button>
+<a href="index.html" class="text-green-700 font-semibold text-lg hover:underline" data-section="main">الرئيسية🏠</a>
+    <a href="#" class="text-green-700 font-semibold text-lg hover:underline" data-section="diet">النظام الغذائي📊</a>
+    <a href="#"class="text-green-700 font-semibold text-lg hover:underline"data-section="exercises">التمارين💪</a>
+    <a href="#" class="text-green-700 font-semibold text-lg hover:underline" data-section="settings">الإعدادات⚙️</a>
+  </nav>
+
+  <main id="main-content" class="max-w-md w-full relative z-10">
+    <!-- Content Sections -->
+    <section id="section-main">
+      <!-- Question 1 -->
+      <div class="mb-10">
+        <div class="flex items-center justify-center mb-4">
+          <div
+            class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm select-none"
+          >
+            1
+          </div>
+          <div class="flex-grow border-t border-gray-300 mx-3"></div>
+        </div>
+        <h2 class="text-center font-semibold text-lg mb-6">ما هو جنسك؟</h2>
+        <div class="flex justify-center gap-10">
+          <button
+            id="gender-male"
+            class="relative flex flex-col items-center gap-2 border border-gray-300 rounded-md w-24 py-2 text-green-700 text-center text-base"
+            type="button"
+            aria-pressed="false"
+          >
+            <img
+              alt="رجل"
+              class="w-20 h-20"
+              height="40"
+              src="https://up6.cc/2025/06/174907547181051.jpeg"
+              width="40"
+            />
+            ذكر
+          </button>
+          <button
+            id="gender-female"
+            class="relative flex flex-col items-center gap-2 border border-gray-300 rounded-md w-24 py-2 text-green-700 text-center text-base"
+            type="button"
+            aria-pressed="false"
+          >
+            <img
+              alt="امرأة"
+              class="w-20 h-20"
+              height="40"
+              src="https://up6.cc/2025/06/174907547183092.jpeg"
+              width="40"
+            />
+            أنثى
+          </button>
+        </div>
+      </div>
+      <!-- Question 2 -->
+      <div class="mb-10">
+        <div class="flex items-center justify-center mb-4">
+          <div
+            class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm select-none"
+          >
+            2
+          </div>
+          <div class="flex-grow border-t border-gray-300 mx-3"></div>
+        </div>
+        <h2 class="text-center font-semibold text-lg mb-6">كم عمرك؟</h2>
+        <div class="flex justify-center items-center gap-2 text-gray-500 text-base">
+          <input
+            id="age"
+            type="number"
+            min="1"
+            max="120"
+            value="0"
+            class="font-extrabold text-2xl text-gray-400 w-20 text-center border-b border-gray-300 focus:outline-none focus:border-green-500"
+            aria-label="العمر"
+          />
+          <span>سنوات</span>
+        </div>
+      </div>
+      <!-- Question 3 -->
+      <div class="mb-10">
+        <div class="flex items-center justify-center mb-4">
+          <div
+            class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm select-none"
+          >
+            3
+          </div>
+          <div class="flex-grow border-t border-gray-300 mx-3"></div>
+        </div>
+        <h2 class="text-center font-semibold text-lg mb-6">كم طولك؟</h2>
+        <div class="flex justify-center items-center gap-2 text-gray-500 text-base">
+          <input
+            id="height"
+            type="number"
+            min="50"
+            max="250"
+            value="0"
+            class="font-extrabold text-2xl text-gray-400 w-20 text-center border-b border-gray-300 focus:outline-none focus:border-green-500"
+            aria-label="الطول"
+          />
+          <span id="height-unit-label">سم</span>
+        </div>
+        <div class="flex justify-center gap-4 mt-4">
+          <button
+            id="unit-cm"
+            class="relative bg-green-50 text-green-700 rounded-md px-4 py-2 text-sm"
+            type="button"
+            aria-pressed="true"
+          >
+            سم
+          </button>
+          <button
+            id="unit-ft"
+            class="relative border border-gray-300 rounded-md px-4 py-2 text-green-700 text-sm"
+            type="button"
+            aria-pressed="false"
+          >
+            قدم/إنش
+          </button>
+        </div>
+      </div>
+      <!-- Question 4 -->
+      <div class="mb-10">
+        <div class="flex items-center justify-center mb-4">
+          <div
+            class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm select-none"
+          >
+            4
+          </div>
+          <div class="flex-grow border-t border-gray-300 mx-3"></div>
+        </div>
+        <h2 class="text-center font-semibold text-lg mb-6">كم وزنك؟</h2>
+        <div class="flex justify-center items-center gap-2 text-gray-500 text-base">
+          <input
+            id="weight"
+            type="number"
+            min="20"
+            max="300"
+            value="0"
+            class="font-extrabold text-2xl text-gray-400 w-20 text-center border-b border-gray-300 focus:outline-none focus:border-green-500"
+            aria-label="الوزن"
+          />
+          <span id="weight-unit-label">كيلو جرام</span>
+        </div>
+        <div class="flex justify-center gap-4 mt-4">
+          <button
+            id="weight-kg"
+            class="relative bg-green-50 text-green-700 rounded-md px-4 py-2 text-sm"
+            type="button"
+            aria-pressed="true"
+          >
+            كيلو جرام
+          </button>
+          <button
+            id="weight-lb"
+            class="relative border border-gray-300 rounded-md px-4 py-2 text-green-700 text-sm"
+            type="button"
+            aria-pressed="false"
+          >
+            رطل
+          </button>
+        </div>
+      </div>
+      <!-- Question 5 -->
+      <div class="mb-10">
+        <div class="flex items-center justify-center mb-4">
+          <div
+            class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm select-none"
+          >
+            5
+          </div>
+          <div class="flex-grow border-t border-gray-300 mx-3"></div>
+        </div>
+        <h2 class="text-center font-semibold text-lg mb-6">ما مدى نشاطك اليومي؟</h2>
+        <div
+          class="grid grid-cols-4 gap-4 text-green-700 text-sm font-normal"
+          role="radiogroup"
+          aria-label="مستوى النشاط اليومي">
+<button
+type="button"
+class="relative border border-gray-300 rounded-md py-2 flex flex-col items-center gap-2"
+id="activity-1"
+aria-pressed="false">
+<img
+alt="شخص جالس"
+class="w-20 h-20"
+height="40"
+src="https://up6.cc/2025/06/174907634885571.jpeg"
+width="40"/>
+ نشاط خفيف 1-3 مرات في الأسبوع 
+(
+</button>
+<button
+type="button"
+class="relative border border-gray-300 rounded-md py-2 flex flex-col items-center gap-2"
+id="activity-2"
+aria-pressed="false"
+          >
+<img
+alt="شخص يمشي"
+class="w-20 h-20"
+height="40"
+src="https://up6.cc/2025/06/174907634888362.jpeg"
+width="40" />
+         نشاط متوسط الشدة 3-5 مرات في الأسبوع
+          </button>
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 flex flex-col items-center gap-2"
+            id="activity-3"
+            aria-pressed="false"
+          >
+            <img
+              alt="شخص يمشي"
+              class="w-20 h-20"
+              height="40"
+              src="https://up6.cc/2025/06/17490763489043.jpeg"
+              width="40"
+            />
+            نشاط عالي جداً 6-7 مرات في الأسبوع
+          </button>
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 flex flex-col items-center gap-2"
+            id="activity-4"
+            aria-pressed="false"
+          >
+            <img
+              alt="شخص يحمل صندوق"
+              class="w-20 h-20"
+              height="40"
+              src="https://up6.cc/2025/06/174907634893714.jpeg"
+              width="40"
+            />
+            نشاط عالي للغاية أو ممارسة رياضة يومية مجهدة
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 6: توزيع المغذيات الكبرى -->
+      <div class="mb-10">
+        <div class="flex items-center justify-center mb-4">
+          <div
+            class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm select-none"
+          >
+            6
+          </div>
+          <div class="flex-grow border-t border-gray-300 mx-3"></div>
+        </div>
+        <h2 class="text-center font-semibold text-lg mb-6">توزيع المغذيات الكبرى</h2>
+        <div
+          class="grid grid-cols-3 gap-4 text-green-700 text-sm font-normal"
+          role="radiogroup"
+          aria-label="توزيع المغذيات الكبرى"
+        >
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+            id="macro-1"
+aria-pressed="false">
+25% دهون
+- 20% بروتين -
+55% كارب
+          </button>
+<button
+type="button"
+class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+id="macro-2"
+aria-pressed="false"
+          >
+20% دهون -
+30% بروتين 
+- 50% كارب
+          </button>
+<button
+type="button"
+class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+id="macro-3"
+aria-pressed="false"
+          >
+20% دهون -
+50% بروتين -
+30% كارب
+          </button>
+        </div>
+      </div>
+<button id="editMacrosBtn" class="btn">تعديل النسب</button>
+
+      <!-- Question 7: هدفك -->
+      <div class="mb-10">
+        <div class="flex items-center justify-center mb-4">
+          <div
+            class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm select-none"
+          >
+            7
+          </div>
+          <div class="flex-grow border-t border-gray-300 mx-3"></div>
+        </div>
+        <h2 class="text-center font-semibold text-lg mb-6">ما هو هدفك؟</h2>
+        <div
+          class="grid grid-cols-3 gap-4 text-green-700 text-sm font-normal"
+          role="radiogroup"
+          aria-label="هدف المستخدم"
+        >
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+            id="goal-1"
+            aria-pressed="false"
+            data-calorie-adjust="0"
+          >
+            الحفاظ على الوزن
+          </button>
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+            id="goal-2"
+            aria-pressed="false"
+            data-calorie-adjust="-0.25"
+          >
+            خسارة وزن ببطئ (0.25-)
+          </button>
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+            id="goal-3"
+            aria-pressed="false"
+            data-calorie-adjust="-0.5"
+          >
+            خسارة وزن ببطئ (0.50-)
+          </button>
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+            id="goal-4"
+            aria-pressed="false"
+            data-calorie-adjust="-1"
+          >
+            خسارة وزن بسرعه (1-)
+          </button>
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+            id="goal-5"
+            aria-pressed="false"
+            data-calorie-adjust="0.25"
+          >
+            زيادة وزن ببطئ (0.25+)
+          </button>
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+            id="goal-6"
+            aria-pressed="false"
+            data-calorie-adjust="0.5"
+          >
+            زيادة وزن بأعتدال (0.50+)
+          </button>
+          <button
+            type="button"
+            class="relative border border-gray-300 rounded-md py-2 px-2 text-center"
+            id="goal-7"
+            aria-pressed="false"
+            data-calorie-adjust="1"
+          >
+            زيادة وزن بسرعة (1+)
+          </button>
+        </div>
+      </div>
+
+      <button
+        id="calculate-btn"
+        class="w-full bg-green-600 hover:bg-green-700 text-white rounded-md py-3 text-base font-normal disabled:opacity-50 disabled:cursor-not-allowed"
+        type="button"
+        disabled
+      >
+        احسب السعرات الحرارية التي تحتاجها
+      </button>
+
+      <!-- Results Section -->
+      <section
+        id="results-section"
+        class="mt-10 hidden"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <h3 class="text-center font-semibold text-xl mb-4 text-green-700">
+          النتائج
+        </h3>
+        <div class="mb-6 text-center text-gray-700 text-base space-y-2">
+          <p>
+            <strong>مؤشر كتلة الجسم (BMI):</strong>
+            <span id="bmi-result"></span>
+          </p>
+          <p>
+            <strong>تصنيف مؤشر كتلة الجسم:</strong>
+            <span id="bmi-category"></span>
+          </p>
+          <p>
+            <strong>السعرات الحرارية اليومية المطلوبة:</strong>
+            <span id="calories-result"></span> سعر حراري
+          </p>
+          <p id="macro-result" class="text-green-700 font-semibold"></p>
+          <p id="macro-grams" class="text-green-700 font-semibold"></p>
+        </div>
+        <canvas id="calorieChart" aria-label="رسم بياني للسعرات الحرارية اليومية" role="img" class="mb-6"></canvas>
+        <canvas id="macroPieChart" aria-label="رسم بياني دائري لتوزيع المغذيات الكبرى لكل وجبة" role="img"></canvas>
+      </section>
+    </section>
+
+    <!-- Placeholder sections for other menu items -->
+    <section id="section-diet" class="hidden text-center text-gray-700 text-lg font-semibold py-20">
+      معلومات النظام الغذائي قيد التطوير...
+    </section>
+    <section id="section-exercises" class="hidden text-center text-gray-700 text-lg font-semibold py-20">
+      معلومات التمارين قيد التطوير...
+    </section>
+    <section id="section-settings" class="hidden text-center text-gray-700 text-lg font-semibold py-20">
+      الإعدادات قيد التطوير...
+    </section>
+  </main>
+<script src="z.js"></script>
+</body>
+</html>
