@@ -25,15 +25,28 @@
   </header>
 <a href="sports/sports.html"></a>
   <!-- Sidebar -->
-  <nav id="sidebar" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg p-6 closed z-30 flex flex-col space-y-6">
-    <button id="close-sidebar" aria-label="إغلاق القائمة" class="self-start text-gray-700 text-2xl focus:outline-none mb-4">
-      <i class="fas fa-times"></i>
-    </button>
-<a href="index.html" class="text-green-700 font-semibold text-lg hover:underline" data-section="main">الرئيسية🏠</a>
-    <a href="#" class="text-green-700 font-semibold text-lg hover:underline" data-section="diet">النظام الغذائي📊</a>
-    <a href="#"class="text-green-700 font-semibold text-lg hover:underline"data-section="exercises">التمارين💪</a>
-    <a href="#" class="text-green-700 font-semibold text-lg hover:underline" data-section="settings">الإعدادات⚙️</a>
-  </nav>
+<nav id="sidebar" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg p-6 closed z-30 flex flex-col space-y-6">
+  <button id="close-sidebar" aria-label="إغلاق القائمة" class="self-start text-gray-700 text-2xl focus:outline-none mb-4">
+    <i class="fas fa-times"></i>
+  </button>
+  
+  <!-- روابط مباشرة بالـ href -->
+  <a href="index.html" class="text-green-700 font-semibold text-lg hover:underline flex items-center space-x-2 space-x-reverse">
+    <i class="fas fa-home"></i> <span>الرئيسية</span>
+  </a>
+  
+  <a href="Meals/T.D.N.html" class="text-green-700 font-semibold text-lg hover:underline flex items-center space-x-2 space-x-reverse">
+    <i class="fas fa-apple-alt"></i> <span>النظام الغذائي</span>
+  </a>
+  
+  <a href="exercises.html" class="text-green-700 font-semibold text-lg hover:underline flex items-center space-x-2 space-x-reverse">
+    <i class="fas fa-dumbbell"></i> <span>التمارين</span>
+  </a>
+  
+  <a href="settings.html" class="text-green-700 font-semibold text-lg hover:underline flex items-center space-x-2 space-x-reverse">
+    <i class="fas fa-cog"></i> <span>الإعدادات</span>
+  </a>
+</nav>
 
   <main id="main-content" class="max-w-md w-full relative z-10">
     <!-- Content Sections -->
@@ -435,17 +448,6 @@ aria-pressed="false"
         <canvas id="calorieChart" aria-label="رسم بياني للسعرات الحرارية اليومية" role="img" class="mb-6"></canvas>
         <canvas id="macroPieChart" aria-label="رسم بياني دائري لتوزيع المغذيات الكبرى لكل وجبة" role="img"></canvas>
       </section>
-    </section>
-
-    <!-- Placeholder sections for other menu items -->
-    <section id="section-diet" class="hidden text-center text-gray-700 text-lg font-semibold py-20">
-      معلومات النظام الغذائي قيد التطوير...
-    </section>
-    <section id="section-exercises" class="hidden text-center text-gray-700 text-lg font-semibold py-20">
-      معلومات التمارين قيد التطوير...
-    </section>
-    <section id="section-settings" class="hidden text-center text-gray-700 text-lg font-semibold py-20">
-      الإعدادات قيد التطوير...
     </section>
   </main>
 <script src="z.js"></script>
