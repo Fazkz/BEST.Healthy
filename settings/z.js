@@ -1,39 +1,15 @@
-  // Sidebar toggle
-    const hamburgerBtn = document.getElementById("hamburger-btn");
-    const sidebar = document.getElementById("sidebar");
-    const closeSidebarBtn = document.getElementById("close-sidebar");
-    const mainContent = document.getElementById("main-content");
+// تبديل الشريط الجانبي
+const hamburgerBtn = document.getElementById("hamburger-btn");
+const sidebar = document.getElementById("sidebar");
+const closeSidebarBtn = document.getElementById("close-sidebar");
 
-    hamburgerBtn.addEventListener("click", () => {
-      sidebar.classList.remove("closed");
-    });
-    closeSidebarBtn.addEventListener("click", () => {
-      sidebar.classList.add("closed");
-    });
+hamburgerBtn.addEventListener("click", () => {
+  sidebar.classList.remove("closed");
+});
 
-    // Navigation links
-    const navLinks = sidebar.querySelectorAll("a[data-section]");
-    const sections = {
-      main: document.getElementById("section-main"),
-      diet: document.getElementById("section-diet"),
-      exercises: document.getElementById("section-exercises"),
-      settings: document.getElementById("section-settings"),
-    };
-
-    navLinks.forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const target = link.getAttribute("data-section");
-        // Hide all sections
-        Object.values(sections).forEach(sec => sec.classList.add("hidden"));
-        // Show target section
-        if (sections[target]) {
-          sections[target].classList.remove("hidden");
-        }
-        // Close sidebar
-        sidebar.classList.add("closed");
-      });
-    });
+closeSidebarBtn.addEventListener("click", () => {
+  sidebar.classList.add("closed");
+});
 
     // Elements for calculator
     const genderMaleBtn = document.getElementById("gender-male");
@@ -424,7 +400,7 @@
           },
         },
       });
-
+sidebar
       // Pie chart for macro distribution per meal (assuming 3 meals)
       const fatPerMeal = (fatGrams / 3).toFixed(1);
       const proteinPerMeal = (proteinGrams / 3).toFixed(1);
