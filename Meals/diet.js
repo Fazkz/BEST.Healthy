@@ -1,6 +1,6 @@
 ///التصنيفات //
 (() => {
-  // Data for main categories and subcategories
+  // بيانات الفئات الرئيسية والفئات الفرعية
 const categoriesData = {
     "كل الأطعمة": {
       icon: "fa-solid fa-bars",
@@ -141,7 +141,7 @@ const categoriesData = {
     },
   };
 
-  // Foods data (partial for brevity, add all as needed)
+  // بيانات الأطعمة (جزئية للاختصار، أضف الكل حسب الحاجة)
 const foodsData = [
 {
   id: "apple",
