@@ -3195,24 +3195,34 @@ image:"https://up6.cc/2025/06/174935351545021.png",
       });
 
       // Add delete button for custom foods in "وجباتي" category
-      if (food.id.startsWith("custom_") && food.category === "وجباتي") {
-        const delBtn = document.createElement("div");
-        delBtn.className = "custom-food-delete-btn";
-        delBtn.title = "حذف الطعام";
-        delBtn.innerHTML = "&times;";
-        delBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          if (confirm(`هل أنت متأكد من حذف الطعام "${food.name}"؟`)) {
-            // Remove from foodsData
-            foodsData = foodsData.filter(f => f.id !== food.id);
-            // Update localStorage for custom foods
-            localStorage.setItem("customFoods", JSON.stringify(foodsData.filter(f => f.id.startsWith("custom_"))));
-            // Re-render food list
-            renderFoodList(currentMainCategory, currentSubCategory, foodSearchInput.value.trim());
-          }
-        });
-        div.appendChild(delBtn);
-      }
+      // Add delete button for custom foods in "وجباتي" category
+if (food.id.startsWith("custom_") && food.category === "وجباتي") { 
+  const delBtn = document.createElement("div"); 
+  delBtn.className = "custom-food-delete-btn"; 
+  delBtn.title = "حذف الطعام"; 
+  delBtn.innerHTML = "&times;"; 
+  
+  // يجب إضافة زر الحذف إلى عنصر الطعام
+  div.appendChild(delBtn); 
+
+  delBtn.addEventListener("click", (e) => { 
+    e.stopPropagation(); // منع فتح نافذة تفاصيل الطعام عند الضغط على زر الحذف
+    if (confirm(`هل أنت متأكد من حذف الطعام "${food.name}"؟`)) { 
+      
+      // 1. إزالة الطعام من المصفوفة الرئيسية foodsData
+      // إعادة تعيين foodsData بالقائمة المفلترة الجديدة
+      foodsData = foodsData.filter(f => f.id !== food.id); 
+      
+      // 2. تحديث التخزين المحلي (localStorage) بحذف العنصر
+      // حفظ فقط الأطعمة التي تبدأ بمعرف "custom_" من المصفوفة المحدثة
+      localStorage.setItem("customFoods", JSON.stringify(foodsData.filter(f => f.id.startsWith("custom_")))); 
+      
+      // 3. إعادة عرض القائمة لتحديث الواجهة فورًا
+      renderFoodList(currentMainCategory, currentSubCategory, foodSearchInput.value.trim()); 
+      
+    } 
+  }); 
+}
 
       foodListContainer.appendChild(div);
     });
