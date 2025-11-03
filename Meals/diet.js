@@ -3194,8 +3194,8 @@ image:"https://up6.cc/2025/06/174935351545021.png",
         openFoodDetailModal(food);
       });
 
-      // Add delete button for custom foods in "أطعمتني" category
-      if (food.id.startsWith("custom_") && food.category === "أطعمتني") {
+      // Add delete button for custom foods in "وجباتي" category
+      if (food.id.startsWith("custom_") && food.category === "وجباتي") {
         const delBtn = document.createElement("div");
         delBtn.className = "custom-food-delete-btn";
         delBtn.title = "حذف الطعام";
