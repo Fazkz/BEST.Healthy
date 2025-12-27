@@ -14,6 +14,39 @@
     rel="stylesheet"
   />
 </head>
+<body class="bg-gradient-to-br from-[#f0f2f5] to-[#c9d6ff] relative min-h-screen flex flex-col font-['Cairo']">
+  
+  <header class="flex items-center justify-between px-6 py-4 sticky top-0 z-30 backdrop-blur-xl bg-white/60 border-b border-white/20 shadow-sm">
+    <button aria-label="فتح القائمة" class="text-gray-800 text-2xl p-2 rounded-full hover:bg-white/40 transition" id="sidebarOpenBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="text-gray-900 text-xl font-bold tracking-tight">Healthy<span class="text-[#E26A56]">.BEST</span></h1>
+    <button class="bg-[#E26A56] text-white font-medium px-4 py-2 rounded-full shadow-lg shadow-[#E26A56]/30 hover:scale-105 transition-transform active:scale-95" id="recordWorkoutBtn">
+      سجل تمرين الغد
+    </button>
+  </header>
+  
+  <section class="flex gap-2 px-4 py-4 sticky top-[68px] z-20 overflow-x-auto no-scrollbar backdrop-blur-md bg-white/30">
+    <button class="tab-btn active-ios-tab px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all" 
+    aria-selected="true"
+    data-tab="allExercises">جميع التمارين</button>
+    <button class="tab-btn bg-white/40 text-gray-700 px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all" data-tab="myExercises">تماريني</button>
+    <button id="createExerciseTabBtn" class="bg-white/40 text-gray-700 px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all">+ إنشاء</button>
+  </section>
+  
+  <section class="px-4 py-2 sticky top-[135px] z-20 backdrop-blur-md bg-white/20">
+    <div class="relative flex items-center bg-white/50 border border-white/40 rounded-2xl px-4 py-3 shadow-inner">
+      <button
+        aria-label="بحث"
+        id="searchBtn"
+        type="button"
+      >
+<i class="fas fa-search text-gray-400 ml-3"style="color: #000000;"></i>
+      </button>
+      <input id="searchInput" type="text" placeholder="ابحث عن تمرينك..." class="bg-transparent w-full text-right outline-none text-gray-800 placeholder-gray-500 font-medium">
+      <button id="filterOpenBtn" class="mr-2 text-gray-600 hover:text-[#000000]"><i class="fas fa-sliders-h"></i></button>
+    </div>
+  </section>
 <body class="bg-white relative min-h-screen flex flex-col">
   <!-- Sidebar -->
   <aside
@@ -29,46 +62,10 @@
         id="sidebarCloseBtn"
         type="button"
       >
-        <i class="fas fa-times"></i>
+        <i class="fas fa-chevron-left"></i>
       </button>
     </div>
     <nav class="flex flex-col gap-4 p-4 text-lg font-semibold text-gray-800">
-      <button
-        class="sidebar-link hover:text-[#E26A56]"
-        data-link="home"
-        type="button"
-      >
-        <li>
-          <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
-        </li>
-      </button>
-      <button
-        class="sidebar-link hover:text-[#E26A56]"
-        data-link="nutrition"
-        type="button"
-      >
-        <li>
-          <a href="Meals/T.D.N.html"><i class="fas fa-fork"></i> التغذية</a>
-        </li>
-      </button>
-      <button
-        class="sidebar-link hover:text-[#E26A56]"
-        data-link="information"
-        type="button"
-      >
-        <li>
-          <a href="#"><i class="fas fa-info-circle"></i>المعلومات</a>
-        </li>
-      </button>
-      <button
-        class="sidebar-link hover:text-[#E26A56]"
-        data-link="settings"
-        type="button"
-      >
-        <li>
-          <a href="#"><i class="fas fa-cog"></i> الإعدادات</a>
-        </li>
-      </button>
     </nav>
   </aside>
   <!-- Overlay for sidebar and modals -->
@@ -77,84 +74,10 @@
     id="overlay"
     tabindex="-1"
   ></div>
-  <!-- Header -->
-  <header
-    class="flex items-center justify-between bg-[#E26A56] px-4 py-3 sticky top-0 z-30"
-  >
-    <button aria-label="فتح القائمة" class="text-black text-3xl" id="sidebarOpenBtn" type="button">
-      <i class="fas fa-bars"></i>
-    </button>
-    <h1 class="text-white text-2xl font-semibold">GYM</h1>
-    <button
-      aria-haspopup="dialog"
-      class="flex items-center gap-2 bg-[#E26A56] text-black font-semibold text-lg px-3 py-2 rounded"
-      id="recordWorkoutBtn"
-      type="button"
-    >
-      <img
-        alt="أيقونة مذكرة"
-        aria-hidden="true"
-        class="w-10 h-10 object-contain"
-        height="24"
-        src="https://up6.cc/2025/05/174757856436551.jpeg"
-        width="24"
-      />
-      سجل تمارين غداً
-    </button>
-  </header>
-  <!-- Tabs for exercises and create -->
-  <section
-    class="flex gap-4 px-4 py-3 border-b border-gray-300 bg-white sticky top-[56px] z-20 overflow-x-auto"
-  >
-    <button
-      aria-selected="false"
-      class="tab-btn border-b-2 border-transparent text-gray-700 font-semibold pb-1 whitespace-nowrap"
-      data-tab="myExercises"
-      type="button"
-    >
-      تماريني الخاصة
-    </button>
-    <button
-      aria-selected="true"
-      class="tab-btn border-b-2 border-[#E26A56] text-[#E26A56] font-semibold pb-1 whitespace-nowrap"
-      data-tab="allExercises"
-      type="button"
-    >
-      جميع التمارين
-    </button>
-    <button
-      id="createExerciseTabBtn"
-      type="button"
-      class="border-b-2 border-transparent text-gray-700 font-semibold pb-1 whitespace-nowrap hover:border-[#E26A56] hover:text-[#E26A56] transition"
-    >
-      إنشاء تمرين
-    </button>
-  </section>
+
+  <!-- علامات تبويب للتمارين وإنشاء -->
   <!-- Search and filter -->
-  <section
-    class="flex items-center gap-3 px-4 py-3 border-b border-gray-300 bg-white sticky top-[104px] z-20"
-  >
-    <button aria-label="فتح الفلتر" class="text-black text-3xl" id="filterOpenBtn" type="button">
-      <i class="fas fa-filter"></i>
-    </button>
-    <div
-      class="flex items-center flex-1 rounded-full border border-gray-300 overflow-hidden"
-    >
-      <button
-        aria-label="بحث"
-        class="bg-[#E26A56] px-5 py-5 flex items-center justify-center text-black text-xl"
-        id="searchBtn"
-        type="button"
-      >
-        <i class="fas fa-search"></i>
-      </button>
-      <input
-        aria-label="حقل البحث عن التمرين"
-        class="flex-1 text-right text-gray-400 placeholder-gray-400 outline-none px-4 py-2 text-lg"
-        id="searchInput"
-        placeholder="البحث عن تمرين"
-        type="text"
-      />
+
     </div>
   </section>
 
@@ -168,14 +91,14 @@
     لا توجد تمارين لهذه العضلة
   </p>
 
-  <!-- Exercises list -->
+  <!-- قائمة التمارين -->
   <main
     class="px-4 py-4 space-y-6 flex-1 overflow-auto"
     id="exercisesList"
   >
-    <!-- Items will be dynamically inserted here -->
+    <!-- سيتم إدراج العناصر هنا بشكل ديناميكي -->
   </main>
-  <!-- Create Exercise Modal -->
+  <!-- إنشاء نموذج التمرين -->
   <div
     aria-labelledby="createExerciseTitle"
     aria-modal="true"
@@ -273,8 +196,8 @@
 <div class="flex flex-col md:flex-row gap-4">
 <div class="flex-1 flex flex-col gap-2">
 <label for="exerciseImageUrl" class="font-semibold text-right">رابط صورة التمرين:</label>
-من خلال مواقع رفع الصور
-<a href="https://www.0zz0.com" target="_blank">انقر هنا👉🏻</a>
+ لازم رابط عشان الصورة تستمر بالظهور و يتم حفظها
+<a href="https://up6.cc"> موقع رفع الصور انقر هنا👉🏻</a>
 <input
               type="url"
               id="exerciseImageUrl"
@@ -305,7 +228,7 @@
       </form>
     </div>
   </div>
-  <!-- Sub Exercises Modal -->
+  <!-- نموذج التمارين الفرعية -->
   <div
     aria-labelledby="subExercisesTitle"
     aria-modal="true"
@@ -333,7 +256,7 @@
       ></div>
     </div>
   </div>
-  <!-- Exercise Detail Modal -->
+  <!-- نافذة تفاصيل التمرين -->
   <div
     aria-labelledby="exerciseDetailTitle"
     aria-modal="true"
@@ -359,16 +282,16 @@
         <div class="flex-1">
           <img
             alt=""
-            class="w-full max-h-64 object-contain rounded-lg mb-4"
+class="w-full max-h-64 object-contain rounded-lg mb-4"
             id="exerciseDetailImage"
             src=""
           />
           <iframe
-            allowfullscreen=""
-            class="w-full aspect-video rounded-lg"
-            id="exerciseDetailVideo"
-            src=""
-            title="فيديو التمرين"
+allowfullscreen=""
+class="w-full aspect-video rounded-lg"
+id="exerciseDetailVideo"
+src=""
+title="فيديو التمرين"
           ></iframe>
         </div>
         <div class="flex-1 flex flex-col justify-between">
@@ -416,7 +339,7 @@
                 </button>
               </div>
               <div>
-                السعرات المحروقة:
+                السعرات المحروقة:≈
                 <span id="caloriesBurned">0</span>
               </div>
             </div>
@@ -451,7 +374,7 @@
       </div>
     </div>
   </div>
-  <!-- Record Workout Modal -->
+  <!-- نموذج تسجيل التمرين -->
   <div
     aria-labelledby="recordWorkoutTitle"
     aria-modal="true"
@@ -491,7 +414,7 @@
       </button>
     </div>
   </div>
-  <!-- Filter Modal -->
+  <!-- نافذة الفلتر -->
   <div
     aria-labelledby="filterTitle"
     aria-modal="true"
@@ -562,7 +485,7 @@
         </section>
       </div>
       <button
-        class="mt-4 bg-[#E26A56] text-black font-semibold py-2 rounded hover:bg-[#cc5a48] transition"
+        class="mt-4 bg-[#E26A56] text-black font-semibold py-2 rounded hover:bg-[#E2711D] transition"
         id="showResultsBtn"
         type="button"
       >
