@@ -1,19 +1,106 @@
- body {
-      font-family: "Cairo", sans-serif;
-    }
+:root {
+  --ios-orange: #E26A56;
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+body {
+  background-attachment: fixed;
+  color: #1d1d1f;
+}
+/* تأثير الزجاج للمودال (النوافذ المنبثقة) */
+  .modal-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 2.5rem; /* حواف دائرية جداً مثل iOS */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  }
+
+  /* البطاقات الزجاجية */
+  .exercise-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .exercise-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  /* تبويبات iOS النشطة */
+  .active-ios-tab {
+    background: var(--ios-orange) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(226, 106, 86, 0.4);
+  }
+
+  /* إخفاء شريط التمرير للتبويبات */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* تخصيص الأزرار */
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* تصميم المدخلات (Inputs) */
+  input, textarea, select {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border-radius: 1rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  }
+  /* تأثير انحناء الحواف المتقدم iOS */
+.glass-panel {
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+        0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* شريط التمرير المخفي بأسلوب آبل */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* حركة ظهور النوافذ */
+[aria-modal="true"] {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; backdrop-filter: blur(0px); }
+    to { opacity: 1; backdrop-filter: blur(20px); }
+}
+
+.glass-panel {
+    animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9) translateY(30px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+}
     .modal-content-scroll {
       max-height: 60vh;
       overflow-y: auto;
     }
     .searched-highlight {
-      border: 2px solid #7c3aed;
+      border: 2px solid #E49273;
       border-radius: 0.5rem;
     }
     .modal-content-scroll::-webkit-scrollbar {
       width: 6px;
     }
     .modal-content-scroll::-webkit-scrollbar-thumb {
-      background-color: rgba(124, 58, 237, 0.5);
+      background-color: #E49273(124, 58, 237, 0.5);
       border-radius: 3px;
     }
     /* Scrollbar for sub exercises list */
