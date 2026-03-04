@@ -1,33 +1,41 @@
  (() => {
       // Data for recipes (example data for 30 recipes)
       const recipes = [
-        {
-          id: 1,
-          name: "باستا",
-          calories: 0,
-          image:
-            "https://storage.googleapis.com/a1aa/image/a9391b4d-7eee-4542-43e0-bdfa0f49126a.jpg",
-macros1: "بروتين: 10 جم، كربوهيدرات: 30 جم، دهون: 5 جم",
-          ingredients: [
-            { emoji: "🍝", name: "باستا", amount: "100 جم" },
-            { emoji: "🍅", name: "صلصة طماطم", amount: "50 جم" },
-          ],
-          preparation: [
-            "سلق الباستا حتى تنضج.",
-            "تسخين الصلصة ووضعها فوق الباستا.",
-          ],
-          category: "lunch",
+{
+id: 1,
+name: "باستا الدجاج المشوي",
+calories: 280,
+image:"https://up6.cc/2025/10/176495274035491.jpeg",
+macros: "بروتين: 24 جم، كربوهيدرات: 40 جم، دهون: 11 جم",
+ingredients: [
+{ emoji: "🍝", name: "باستا بيني", amount: "50 جم"
+},
+{ emoji: "🍅", name:"صلصة طماطم معلبة او تم تحضيرها", amount: "70 جم" },
+{ emoji: "🍗", name:"صدور دجاج مشوي مقطع", amount: "60 جم" },
+{ emoji: "🍄‍🟫", name:"فطر شرائح", amount: "30 جم" },
+{ emoji: "", name:"سبانخ", amount: "20 جم" },
+{ emoji: "🫒", name:"زيت زيتون", amount: "8 مل" },
+{ emoji: "", name:"ملح و فلفل حسب الرغبة", amount: "0 جم" },
+{ emoji: "🍀", name:"بقدونس لمسه جماليه", amount: "0 جم" },
+        ],
+
+preparation: [
+"سلق الباستا: اضف 50 جم و اطبخها نصف نضج قبل 3 دقايق من الوقت المحدد قم بتصفيتها و احتفظ بـ كوب كبير من ماء سلق الباستا جانباً قبل التصفيه ",
+ "تحضير حشوة الدجاج والخضار: في مقلاة صغيرة، سخّن زيت الزيتون (8 مل) --- أضف شرائح الفطر واطبخها لمدة 3-4 دقائق حتى تلين --- أضف مكعبات الدجاج المشوي وقلبها لتسخن. --- اضف السبانخ و الملح و الفلفل استمر بالتقليب حتى يذبل السبانخ",
+"دمج المكونات: في نفس المقلاة اضف صلصة الطماطم ( 70 جم ) --- اضف ماء سلق الباستا الذي احتفضت به سيساعد على كثافة الصلصة --- اضف الباستا نصف نضج --- اضف خليط الدجاج و الفطر و السبانخ للمقلاة قلب حتى تمتزج تماماً ",
+"مشروبك المفضل و الافضل بدون سكر  بالعافيه عليك",
+],
         },
-        {
-          id: 2,
-          name: "سلطة فواكه",
-          calories: 63,
+{
+id: 2,
+name: "سلطة فواكه",
+          calories: 60,
 image:"https://up6.cc/2025/08/175881308746151.jpeg",
-macros: "بروتين: 0.6 جم، كربوهيدرات: 16 جم، دهون: 0.3 جم",
+macros: "بروتين: 0.6 جم، كربوهيدرات: 15.5 جم، دهون: 0.3 جم",
           ingredients: [
 { emoji: "🍎", name: "تفاح أحمر", amount: "40 جم" },
 { emoji: "🥭", name: "مانجو طازج", amount: "40 جم" },
-{ emoji: "🍍", name: "مانجو طازج", amount: "30 جم" },
+{ emoji: "🍍", name: "اناساس طازج", amount: "30 جم" },
           ],
 preparation: [
 "غسل الفواكه وتقطيعها إلى مكعبات صغيرة.",
@@ -36,25 +44,26 @@ preparation: [
 category: "snacks",
         },
         {
-          id: 3,
-          name: "بيض مسلوق",
-          calories: 371,
-          image:
-            "https://storage.googleapis.com/a1aa/image/0524ec63-8876-444e-c214-debfcd6d7987.jpg",
-          macros: "بروتين: 30 جم، كربوهيدرات: 1 جم، دهون: 25 جم",
+id: 3,
+name: "البيض المسلوق والأفوكادو",
+calories: 442,
+image:"https://up6.cc/2025/10/176513072771191.jpeg",
+macros: "بروتين: 20.20 جم، كربوهيدرات: 38 جم، دهون: 24.38 جم",
           ingredients: [
-            { emoji: "🥚", name: "بيض", amount: "2 حبة" },
-            { emoji: "🍞", name: "توست", amount: "1 شريحة" },
+{ emoji: "🥚", name: "بيض متوسط", amount: "حبتين تقريباً 100جم" },
+{ emoji: "🍞", name: "توست لوزين ابيض", amount: "شريحتين 60جم" },
+{ emoji: "🥑", name: "افوكادو", amount: "نصف الأفوكادو 70جم" },
           ],
-          preparation: [
-            "سلق البيض حتى ينضج.",
-            "تقديم البيض مع التوست.",
-          ],
-          category: "breakfast",
-        },
-        {
-          id: 4,
-          name: "شوربة دجاج",
+     preparation: [
+"تحضير البيض: ضع البيض في الماء و على النار لمدة لا تقل عن 10 دقائق",
+   "تحضير التوست و الأفوكادو: قم بتحميص التوست حسب الرغبة / الأفوكادو اهرس الكمية المطلوبة في صحن ثم رش عليه فلفل (اختياري)",
+"جمع الوجبة: ادهن الأفوكادو على الخبز بالتساوي / قشر البيض المسلوق ثم قطعه إلى شرايح و ضعه فوق الخبز / رش فلفل اسود (اختياري)",
+ ],
+ category: "breakfast",
+    },
+{
+id: 4,
+name: "شوربة دجاج",
           calories: 219,
           image:
             "https://storage.googleapis.com/a1aa/image/db9416ea-ca6a-40bd-33b3-327f4cda7f1b.jpg",
@@ -70,7 +79,7 @@ category: "snacks",
           category: "lunch",
         },
         {
-          id: 5,
+id: 5,
           name: "سلطة خضراء",
           calories: 150,
           image:
@@ -87,7 +96,7 @@ category: "snacks",
           category: "snacks",
         },
         {
-          id: 6,
+id: 6,
           name: "عصير برتقال",
           calories: 110,
           image:
@@ -103,7 +112,7 @@ category: "snacks",
           category: "breakfast",
         },
         {
-          id: 7,
+id: 7,
           name: "شوربة عدس",
           calories: 180,
           image:
@@ -120,7 +129,7 @@ category: "snacks",
           category: "dinner",
         },
         {
-          id: 8,
+id: 8,
           name: "ساندويتش دجاج",
           calories: 350,
           image:
@@ -137,7 +146,7 @@ category: "snacks",
           category: "lunch",
         },
         {
-          id: 9,
+id: 9,
           name: "زبادي بالفواكه",
           calories: 120,
           image:
@@ -154,7 +163,7 @@ category: "snacks",
           category: "snacks",
         },
         {
-          id: 10,
+id: 10,
           name: "شوربة خضار",
           calories: 130,
           image:
@@ -170,29 +179,13 @@ category: "snacks",
           ],
           category: "dinner",
         },
-        // Add more recipes up to 30 with similar structure
-      ];
+/////المزيد هنا قم بلصقه هنا///////
 
-      // Fill up to 30 recipes with dummy data if less than 30
-      while (recipes.length < 30) {
-        const id = recipes.length + 1;
-        recipes.push({
-          id,
-          name: `وصفة ${id}`,
-          calories: Math.floor(Math.random() * 500),
-          image: `https://placehold.co/96x96/png?text=وصفة+${id}`,
-          macros: "بروتين: 10 جم، كربوهيدرات: 20 جم، دهون: 5 جم",
-          ingredients: [
-            { emoji: "🍽️", name: "مكون 1", amount: "50 جم" },
-            { emoji: "🍽️", name: "مكون 2", amount: "30 جم" },
-          ],
-          preparation: [
-            "خطوة 1: التحضير.",
-            "خطوة 2: الطهي.",
-          ],
-          category: ["breakfast", "lunch", "dinner", "snacks"][id % 4],
-        });
-      }
+// أضف المزيد من الوصفات حتى 30 وصفة ذات بنية مماثلة
+      ];
+updateWaterUI
+// املأ ما يصل إلى 30 وصفة ببيانات وهمية إذا كان العدد أقل من 30
+
 
       // Elements
       const body = document.body;
@@ -231,9 +224,13 @@ category: "snacks",
       const waterQuickInput = document.getElementById("waterQuickInput");
       const waterQuickDoneBtn = document.getElementById("waterQuickDoneBtn");
       const waterGoalInput = document.getElementById("waterGoalInput");
-      const waterProgressBar = document.getElementById("waterProgressBar");
-      const waterProgressPercent = document.getElementById("waterProgressPercent");
-      const drinkWaterBtn = document.createElement("button");
+      // ...
+const waterProgressBar = document.getElementById("waterProgressBar");
+const waterProgressPercent = document.getElementById("waterProgressPercent");
+const waterCupFill = document.getElementById("waterCupFill"); // NEW
+const waterProgressPercentCup = document.getElementById("waterProgressPercentCup"); // NEW
+const drinkWaterBtn = document.createElement("button");
+// ...
       const resetWaterBtn = document.getElementById("resetWaterBtn");
       const waterDetailsBtn = document.getElementById("waterDetailsBtn");
       const waterDetailsWindow = document.getElementById("waterDetailsWindow");
@@ -264,15 +261,26 @@ category: "snacks",
         localStorage.setItem("waterIntakeRecords", JSON.stringify(waterIntakeRecords));
       }
 
-      function updateWaterUI() {
-        waterAmountDisplay.textContent = waterAmount;
-        waterQuickInput.value = waterAmount;
-        waterGoalInput.value = waterGoal;
-        let percent = Math.min(100, Math.round((waterIntakeRecords.reduce((a, r) => a + r.amount, 0) / waterGoal) * 100));
-        waterProgressPercent.textContent = percent + "%";
-        waterProgressBar.style.background = `linear-gradient(to right, #7fb6d9 0%, #7fb6d9 ${percent}%, #a7d1e8 ${percent}%, #a7d1e8 100%)`;
-      }
-
+function updateWaterUI() {
+  waterAmountDisplay.textContent = waterAmount;
+  waterQuickInput.value = waterAmount;
+  waterGoalInput.value = waterGoal;
+  
+  // Calculate current total intake
+  const currentIntake = waterIntakeRecords.reduce((a, r) => a + r.amount, 0);
+  
+  // Calculate percentage (clamped at 100% for the visual fill)
+  let percent = Math.min(100, Math.round((currentIntake / waterGoal) * 100));
+  
+  // Update cup fill and percentage
+  waterProgressPercentCup.textContent = percent + "%";
+  waterCupFill.style.height = `${percent}%`;
+  
+  // Update progress bar
+  waterProgressPercent.textContent = percent + "%";
+  waterProgressBar.style.background = `linear-gradient(to right, #7fb6d9 0%, #7fb6d9 ${percent}%, #a7d1e8 ${percent}%, #a7d1e8 100%)`;
+}
+waterProgressBar
       function renderRecipeCard(recipe, container, showDelete = false) {
         const card = document.createElement("div");
         card.className = "flex-shrink-0 w-24 relative cursor-pointer select-none";
@@ -748,3 +756,4 @@ category: "snacks",
         toggleDarkMode();
       }
     })();
+    
