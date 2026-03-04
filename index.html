@@ -14,7 +14,9 @@ sizes="180x180" href="https://up6.cc/2025/10/176487849861471.jpeg">
     rel="stylesheet"
   />
   <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet" />
- <link rel="stylesheet" href="styles.css"/>
+<!--لتحديث لواجهة زجاجيه ios26
+احذف 🪟🫗-->
+ <link rel="stylesheet" href="style🪟🫗.css"/>
 </head>
 <body class="bg-white text-gray-900 relative" id="body">
   <!-- Navbar -->
@@ -98,7 +100,7 @@ sizes="180x180" href="https://up6.cc/2025/10/176487849861471.jpeg">
     </div>
   </div>
 
-  <!-- Recipe Detail Window -->
+  <!-- نافذة تفاصيل الوصفة-->
   <div
     id="recipeDetailWindow"
     class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto"
@@ -150,13 +152,13 @@ sizes="180x180" href="https://up6.cc/2025/10/176487849861471.jpeg">
     </div>
   </div>
 
-  <!-- More Recipes Window -->
-  <div
+  <!-- نافذة المزيد من الوصفات -->
+ <div
     id="moreRecipesWindow"
     class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto"
     style="direction: rtl"
   >
-    <div class="bg-white dark:bg-[#1a202c] max-w-5xl mx-auto mt-8 rounded-lg p-4 relative min-h-[80vh] flex flex-col">
+    <div class="bg-white dark:bg-[#1aff2c] max-w-5xl mx-auto mt-8 rounded-lg p-4 relative min-h-[80vh] flex flex-col">
       <button
         id="closeMoreRecipesBtn"
         aria-label="close more recipes"
@@ -189,34 +191,35 @@ sizes="180x180" href="https://up6.cc/2025/10/176487849861471.jpeg">
         id="moreRecipesList"
         class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-4 overflow-y-auto flex-grow"
       >
-        <!-- 30 recipes will be rendered here -->
+     <!-- سيتم عرض 30 وصفة هنا -->
       </div>
     </div>
   </div>
 
-  <!-- Main Content -->
+  <!-- المحتوى الرئيسي -->
   <main class="px-4 mt-3 max-w-7xl mx-auto">
-    <!-- Top Scrollable Images -->
+    <!-- أفضل الصور القابلة للتمرير -->
     <section class="flex space-x-4 space-x-reverse overflow-x-auto pb-2">
  <img
-src="https://up6.cc/2025/08/175901471689071.jpeg"
+src="https://up6.cc/2025/10/176529339835891.jpeg"
 alt="صورة"
 class="w-64 h-32 rounded-xl object-cover flex-shrink-0 cursor-pointer"
-data-file="file1"
+data-file="Meals/T.D.N.html"
       />
 <img
-src="https://up6.cc/2025/08/175917510072251.png"
+src="https://up6.cc/2025/10/176515241812621.jpeg"
 alt="صورة"
         class="w-64 h-32 rounded-xl object-cover flex-shrink-0 cursor-pointer"
         data-file="SPORTS/SA.html"
       />
 <img
-src="https://up6.cc/2025/08/175917474545771.jpeg"
+src="https://up6.cc/2025/10/176529550624531.jpeg"
         alt="صورة"
         class="w-64 h-32 rounded-xl object-cover flex-shrink-0"
+data-file="settings/BMI.html"
       />
 <img
-src="https://up6.cc/2025/08/175917510072251.png"
+src="https://up6.cc/2025/08/175901471689071.jpeg"
         alt="صورة"
         class="w-64 h-32 rounded-xl object-cover flex-shrink-0"
       />
@@ -237,11 +240,11 @@ src="https://up6.cc/2025/08/175901471689071.jpeg"
       />
     </section>
 
-    <!-- Title and More -->
+    <!-- العنوان والمزيد -->
     <section
       class="flex justify-between items-center mt-3 border-b border-gray-300 dark:border-gray-700 pb-1">
 <h2 
-      class="font-bold text-base dark:text-black">اكثر من 30 + وصفات صحيه</h2>
+class="font-bold text-base dark:text-black">وصفات صحية محسوبة لك.</h2>
       <button
         id="moreBtn"
         class="flex items-center text-green-600 font-semibold text-sm focus:outline-none"
@@ -251,19 +254,16 @@ src="https://up6.cc/2025/08/175901471689071.jpeg"
         <span>المزيد</span>
       </button>
     </section>
-
-    <!-- Recipes Scroll -->
-    <section class="mt-3 overflow-x-auto">
-      <div
-        id="homeRecipesList"
-        class="flex space-x-4 space-x-reverse w-max"
-        style="direction: rtl"
-      >
-        <!-- 10 recipes will be rendered here -->
+<!-- وصفات التمرير---->
+<section class="mt-3 overflow-x-auto">
+<div
+id="homeRecipesList"
+class="flex space-x-4 space-x-reverse w-max"
+style="direction: rtl">
+<!-- سيتم تقديم 10 وصفات هنا -->
       </div>
     </section>
-
-    <!-- Water Tracking -->
+    <!-- تتبع المياه -->
     <section class="mt-6">
       <div class="bg-[#e6e6e6] dark:bg-[#2d3748] rounded-xl p-4">
         
@@ -271,13 +271,28 @@ src="https://up6.cc/2025/08/175901471689071.jpeg"
           <h3 class="font-bold text-lg dark:text-white">تتبع شرب الماء</h3>
           <button
             id="resetWaterBtn"
-class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 focus:outline-none"
+class="bg-[#] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 focus:outline-none"
             type="button"
-            title="إعادة تعيين"
+            title="حذف الكل"
           >
-            اعادة تعيين
+           
           </button>
         </div>
+        
+        <div class="flex flex-col items-center justify-center mb-4">
+            <div class="relative w-20 h-28 border-4 border-blue-500 dark:border-blue-400 rounded-b-xl rounded-t-lg overflow-hidden">
+                <div 
+                    id="waterCupFill"
+                    class="absolute bottom-0 w-full bg-blue-400 dark:bg-blue-300 transition-all duration-500 ease-out"
+                    style="height: 5%;"
+                ></div>
+                <div class="absolute inset-0 flex items-center justify-center text-xl font-bold dark:text-gray-900 z-10">
+                    <span id="waterProgressPercentCup">5%</span>
+                </div>
+            </div>
+            <p class="text-sm mt-2 dark:text-gray-300">الكمية اليومية المحققة</p>
+        </div>
+        
         <div
           class="flex items-center justify-center space-x-3 space-x-reverse bg-white dark:bg-[#2c3e50] rounded-full max-w-[180px] mx-auto py-1"
         >
@@ -291,7 +306,7 @@ class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 
           </button>
           <div
             id="waterAmountDisplay"
-            class="bg-[#7fb6d9] dark:bg-[#4a90e2] text-[#2c3e50] dark:text-gray-900 font-bold rounded-full text-center text-base w-16 py-1 select-none"
+            class="bg-[#4a90e2] dark:bg-[#4a90e2] text-[#ffffff] dark:text-gray-900 font-bold rounded-full text-center text-base w-16 py-1 select-none"
           >
             50
           </div>
@@ -316,7 +331,7 @@ class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 
             step="50"
             value="50"
           />
-          <span class="text-sm dark:text-gray-300">ml</span>
+          <span class="text-sm dark:text-gray-300">مل</span>
           <button
             id="waterQuickDoneBtn"
             class="bg-[#2c3e50] dark:bg-[#1a202c] text-white rounded-full text-xs px-3 py-1 focus:outline-none"
@@ -336,8 +351,9 @@ class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 
             min="0"
             value="3000"
           />
-          <span class="text-sm dark:text-gray-300">ml هدف الكمية</span>
+          <span class="text-sm dark:text-gray-300">مل هدف الكمية</span>
         </div>
+        
         <div class="mt-4 max-w-[280px] mx-auto">
           <div
             id="waterProgressBar"
@@ -348,6 +364,7 @@ class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 
             5%
           </p>
         </div>
+        
         <div
           id="waterDetailsBtn"
           class="flex items-center space-x-2 space-x-reverse mt-3 max-w-[280px] mx-auto cursor-pointer select-none"
@@ -363,9 +380,8 @@ class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 
         </div>
       </div>
     </section>
-
-    <!-- Water Details Window -->
-    <div
+    <!-- تفاصيل المياه نافذة -->
+<div
       id="waterDetailsWindow"
       class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto"
       style="direction: rtl"
@@ -373,6 +389,7 @@ class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 
       <div
         class="bg-white dark:bg-[#1a202c] max-w-3xl mx-auto mt-16 rounded-lg p-4 relative"
       >
+        
         <button
           id="closeWaterDetailsBtn"
           aria-label="close water details"
@@ -380,7 +397,8 @@ class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 
         >
           &times;
         </button>
-        <h3 class="text-xl font-bold mb-3 dark:text-white">تفاصيل شرب الماء</h3>
+       
+        <h3 class="text-xl font-bold mb-3 dark:text-white">💧تفاصيل شرب الماء</h3>
         <div class="mb-4 dark:text-gray-300">
           <p>كمية الماء التي شربتها يوميًا (لتر): <span id="waterLiters">0</span></p>
           <p>أفضل يوم لشرب الماء: <span id="bestWaterDay">لا يوجد بيانات</span></p>
@@ -388,23 +406,18 @@ class="bg-[#2c3e50] dark:bg-[#1a202c] text-white text-xs rounded-full px-3 py-1 
         <div class="mb-4">
           <canvas id="waterChart" class="w-full h-48 bg-gray-100 dark:bg-gray-700 rounded"></canvas>
         </div>
-        <button
-          id="clearWaterDataBtn"
-          class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded focus:outline-none"
-        >
-          مسح جميع البيانات
-        </button>
+        
         <p class="mt-4 italic dark:text-gray-400" id="waterMotivation">
           اشرب الماء بانتظام لتحافظ على صحتك ونشاطك!
         </p>
       </div>
     </div>
-
+<!--.........--->
     <!-- Tips Section -->
     <section class="mt-6">
-      <h3 class="text-center font-semibold text-lg mb-4 dark:text-white">نصائح تهمك</h3>
+      <h3 class="text-center font-semibold text-lg mb-4 dark:text-white">ادلة مهمه</h3>
       <div class="flex justify-center space-x-4 space-x-reverse">
-        <a
+<a
 href="https://www.sfda.gov.sa/sites/default/files/2023-03/P-02.pdf"
 target="_blank"
 rel="noopener noreferrer"
@@ -421,36 +434,19 @@ height="96"
         </a>
         <a
 href="https://www.moh.gov.sa/Ministry/About/Health%20Policies/Healthy-Food-Guidelines-for-Health-Practitioners.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-24 rounded-xl overflow-hidden cursor-pointer"
-          title="دليل الغذاء الصحي"
-        >
-          <img
-            alt="فواكه وخضروات ملونة على خلفية رمادية فاتحة"
-            class="w-24 h-24 object-cover"
-            src="https://storage.googleapis.com/a1aa/image/37628d50-4172-4909-8993-f596e32075b0.jpg"
-            width="96"
-            height="96"
-          />
-          <p class="text-[10px] text-center mt-1 dark:text-gray-300">دليل الغذاء الصحي</p>
-        </a>
-        <a
-          href="https://www.moh.gov.sa/Ministry/About/Health%20Policies/Healthy-Food-Guidelines-for-Health-Practitioners.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-24 rounded-xl overflow-hidden cursor-pointer"
-          title="دليل السعرات الحرارية"
-        >
-          <img
-            alt="زهور ملونة مع أشرطة قياس الوزن على خلفية زرقاء فاتحة"
-            class="w-24 h-24 object-cover"
-            src="https://storage.googleapis.com/a1aa/image/4c72ef0a-d0b8-4f05-5034-76153b89a840.jpg"
-            width="96"
-            height="96"
-          />
-          <p class="text-[10px] text-center mt-1 dark:text-gray-300">دليل السعرات الحرارية</p>
-        </a>
+target="_blank"
+rel="noopener noreferrer"
+class="w-24 rounded-xl overflow-hidden cursor-pointer"
+title="دليل الغذاء الصحي">
+<img
+alt="دليل الغذاء"
+class="w-24 h-24 object-cover"
+src="https://up6.cc/2025/10/176521140742971.jpeg"
+width="96"
+height="96"
+       />
+<p class="text-[10px] text-center mt-1 dark:text-gray-300">دليل الغذاء الصحي</p>
+</a>
       </div>
     </section>
   </main>
@@ -470,14 +466,15 @@ href="https://www.moh.gov.sa/Ministry/About/Health%20Policies/Healthy-Food-Guide
         &times;
       </button>
       <h2 class="text-xl font-bold mb-4 dark:text-white">سياسة الخصوصية</h2>
-      <div class="space-y-3 text-gray-700 dark:text-gray-300 max-h-[70vh] overflow-y-auto">
-        <p>1. لا يتم نشر محتوى الموقع بدون إذن.</p>
-        <p>2. لا يتم مشاركة معلوماتك الشخصية مع أي طرف ثالث.</p>
-        <p>3. لا يتم مشاركة الموقع مع جهات غير مصرح بها.</p>
-        <p>4. يتم احترام خصوصيتك وحماية بياناتك بشكل كامل.</p>
-        <p>5. يتم استخدام البيانات فقط لتحسين تجربة المستخدم.</p>
-        <p>6. يمكن تحديث سياسة الخصوصية من وقت لآخر وسيتم إعلام المستخدمين بذلك.</p>
-        <p>7. استخدام الموقع يعني موافقتك على هذه الشروط.</p>
+<div class="space-y-3 text-gray-700 dark:text-gray-300 max-h-[70vh] overflow-y-auto">
+<p>1. لا يتم نشر محتوى الموقع بدون إذن.</p>
+<p>2.لا يُسمح للمستخدم نشر اي من الخدمات المدفوعه لمستخدمين آخرين</p>
+<p>3. لا يتم مشاركة معلوماتك الشخصية مع أي طرف ثالث.</p>
+<p>4. لا يتم مشاركة الموقع مع جهات غير مصرح بها.</p>
+<p>5. يتم احترام خصوصيتك وحماية بياناتك بشكل كامل.</p>
+<p>6. يتم استخدام البيانات فقط لتحسين تجربة المستخدم.</p>
+<p>7. يمكن تحديث سياسة الخصوصية من وقت لآخر وسيتم إعلام المستخدمين بذلك.</p>
+<p>8. استخدام الموقع يعني موافقتك على هذه الشروط.</p>
       </div>
     </div>
   </div>
@@ -496,7 +493,7 @@ title="سناب شات">
 <i class="fab fa-snapchat-ghost"></i>
       </a>
       <a
-        href="https://www.tiktok.com/@youraccount"
+href="https://www.tiktok.com/@best.h5?_r=1&_t=ZS-9258GVUQMd7"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="TikTok"
@@ -505,18 +502,8 @@ title="سناب شات">
       >
         <i class="fab fa-tiktok"></i>
       </a>
-      <a
-        href="https://www.youtube.com/channel/yourchannel"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="YouTube"
-        class="text-red-600 text-2xl hover:opacity-80"
-        title="يوتيوب"
-      >
-        <i class="fab fa-youtube"></i>
-      </a>
-      <a
-        href="https://t.me/youraccount"
+<a
+href="https://t.me/+CGAAHT4akoNlNzA0"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Telegram"
@@ -528,7 +515,12 @@ title="سناب شات">
     </div>
     <div class="text-center sm:text-right cursor-pointer" id="privacyPolicyBtn" title="سياسة الخصوصية">
       <p>سياسة الخصوصية : هنا</p>
-      <p class="mt-1 font-bold text-sm">© 2025 جميع الحقوق محفوظة</p>
+     <span>© <span id="year"></span> جميع الحقوق محفوظة</span>
+
+<script>
+  document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
+
     </div>
   </footer>
 <script src="script.js"></script>
